@@ -173,7 +173,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
-    private void updateUserInfo(final String name, Uri pickedImageUri, FirebaseUser currentUser) {
+    private void updateUserInfo(final String name, Uri pickedImageUri, final FirebaseUser currentUser) {
 
         StorageReference guestPhotoReference = FirebaseStorage.getInstance().getReference().child("guestPhotos");
         final StorageReference imageFilePath = guestPhotoReference.child(pickedImageUri.getLastPathSegment());
@@ -188,7 +188,7 @@ public class RegisterActivity extends AppCompatActivity {
                         UserProfileChangeRequest profileChangeRequest = new UserProfileChangeRequest.Builder()
                                 .setDisplayName(name).setPhotoUri(uri).build();
 
-                        user.updateProfile(profileChangeRequest).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        currentUser.updateProfile(profileChangeRequest).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()){
