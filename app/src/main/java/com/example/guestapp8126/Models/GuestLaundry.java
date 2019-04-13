@@ -10,8 +10,9 @@ public class GuestLaundry {
     private String guestLongitude;
     private String guestPhoto;
     private String guestName;
+    private String guestMail;
 
-    public GuestLaundry(String guestId, String guestAlamat, String guestPhone, String guestLatitude, String guestLongitude, String guestPhoto, String guestName) {
+    public GuestLaundry(String guestId, String guestAlamat, String guestPhone, String guestLatitude, String guestLongitude, String guestPhoto, String guestName, String guestMail) {
         this.guestId = guestId;
         this.guestAlamat = guestAlamat;
         this.guestPhone = guestPhone;
@@ -19,9 +20,18 @@ public class GuestLaundry {
         this.guestLongitude = guestLongitude;
         this.guestPhoto = guestPhoto;
         this.guestName = guestName;
+        this.guestMail = guestMail;
     }
 
     public GuestLaundry() {
+    }
+
+    public String getGuestMail() {
+        return guestMail;
+    }
+
+    public void setGuestMail(String guestMail) {
+        this.guestMail = guestMail;
     }
 
     public String getGuestKey() {

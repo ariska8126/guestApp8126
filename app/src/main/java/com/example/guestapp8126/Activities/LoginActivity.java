@@ -15,6 +15,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -88,18 +89,22 @@ public class LoginActivity extends AppCompatActivity {
 
                             updateUI();
                         }
+                        else
+                        {
+                            showMessage(task.getException().getMessage());
+                            btn_sign_login.setVisibility(View.VISIBLE);
+                            btn_daftar_login.setVisibility(View.VISIBLE);
+                            pb_login.setVisibility(View.INVISIBLE);
+                        }
 
-                        showMessage(task.getException().getMessage());
-                        btn_sign_login.setVisibility(View.VISIBLE);
-                        btn_daftar_login.setVisibility(View.VISIBLE);
-                        pb_login.setVisibility(View.INVISIBLE);
+
                     }
                 });
     }
 
     private void updateUI() {
-        Intent homeInten = new Intent(getApplicationContext(), MainActivity.class);
-        startActivity(homeInten);
+        Intent homeIntent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(homeIntent);
         finish();
 
     }
@@ -107,5 +112,19 @@ public class LoginActivity extends AppCompatActivity {
     private void showMessage(String s) {
 
         Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        FirebaseUser user = auth.getCurrentUser();
+
+        if (user != null){
+
+            //user allready connected - direct to home
+            updateUI();
+
+        }
     }
 }

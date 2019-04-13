@@ -104,7 +104,8 @@ public class CompletingProfileActivity extends AppCompatActivity {
                             latitude.toString(),
                             longitude.toString(),
                             currentUser.getPhotoUrl().toString(),
-                            currentUser.getDisplayName());
+                            currentUser.getDisplayName(),
+                            currentUser.getEmail());
 
                     simpanProfileGuest(guestLaundry);
 
