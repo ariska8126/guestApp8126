@@ -30,6 +30,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView">
 
+
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -48,7 +49,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="asdf"
-                android:textSize="14sp" />
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
         </TableRow>
 
@@ -65,7 +67,7 @@
                 android:textSize="14sp" />
 
             <Spinner
-                android:id="@+id/spinner"
+                android:id="@+id/spinner_pewangi_ro"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
@@ -84,7 +86,7 @@
                 android:textSize="14sp" />
 
             <Switch
-                android:id="@+id/switch1"
+                android:id="@+id/sw_setrika_ro"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Switch" />
@@ -104,7 +106,7 @@
                 android:textSize="14sp" />
 
             <Switch
-                android:id="@+id/switch2"
+                android:id="@+id/sw_anjem_ro"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Switch" />
@@ -123,19 +125,19 @@
                 android:text="Deskripsi"
                 android:textSize="14sp" />
 
-            <TextView
-                android:layout_width="match_parent"
+            <EditText
+                android:id="@+id/edt_desc_ro"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="asdf"
-                android:textSize="14sp" />
+                android:ems="10"
+                android:inputType="textMultiLine" />
 
         </TableRow>
 
     </TableLayout>
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btn_order_ro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -145,12 +147,12 @@
         app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/btn_cancel_ro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
-        android:text="Button"
+        android:text="Cancel"
         app:layout_constraintStart_toStartOf="@+id/tableLayout"
         app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
 </android.support.constraint.ConstraintLayout>
