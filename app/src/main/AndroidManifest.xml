@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.RequestOrderActivity"></activity>
+        <activity android:name=".Activities.CancelOrderActivity"></activity>
+        <activity android:name=".Activities.RequestOrderActivity" />
         <activity android:name=".Activities.LaundryDetailActivity" />
         <activity
             android:name=".Activities.MainActivity"

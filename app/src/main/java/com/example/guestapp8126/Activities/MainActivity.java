@@ -25,6 +25,7 @@ import com.example.guestapp8126.Fragments.AboutFragment;
 import com.example.guestapp8126.Fragments.GuideFragment;
 import com.example.guestapp8126.Fragments.HomeFragment;
 import com.example.guestapp8126.Fragments.ProfileFragment;
+import com.example.guestapp8126.Fragments.RequestOrderFragment;
 import com.example.guestapp8126.Models.OwnerLaundry;
 import com.example.guestapp8126.R;
 import com.example.guestapp8126.Test.SearchFragment;
@@ -175,6 +176,11 @@ public class MainActivity extends AppCompatActivity
 
             getSupportActionBar().setTitle("About");
             getSupportFragmentManager().beginTransaction().replace(R.id.container, new AboutFragment()).commit();
+
+        } else if(id == R.id.nav_request_order){
+            fab.setVisibility(View.INVISIBLE);
+            getSupportActionBar().setTitle("Menunggu Persetujuan");
+            getSupportFragmentManager().beginTransaction().replace(R.id.container, new RequestOrderFragment()).commit();
 
         } else if (id == R.id.nav_signout){
             fab.setVisibility(View.INVISIBLE);

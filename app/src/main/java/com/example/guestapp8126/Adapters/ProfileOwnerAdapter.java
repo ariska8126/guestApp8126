@@ -22,7 +22,8 @@ import com.google.firebase.auth.FirebaseUser;
 
 import java.util.List;
 
-public class ProfileOwnerAdapter extends RecyclerView.Adapter<ProfileOwnerAdapter.MyViewHolder> {
+public class ProfileOwnerAdapter extends RecyclerView.Adapter<ProfileOwnerAdapter
+        .MyViewHolder> {
 
     Context mContext;
     List<OwnerLaundry> mData;
@@ -36,7 +37,8 @@ public class ProfileOwnerAdapter extends RecyclerView.Adapter<ProfileOwnerAdapte
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View row = LayoutInflater.from(mContext).inflate(R.layout.row_search_result, parent, false);
+        View row = LayoutInflater.from(mContext).inflate(R.layout.row_search_result,
+                parent, false);
 
         return new MyViewHolder(row);
     }
@@ -47,7 +49,8 @@ public class ProfileOwnerAdapter extends RecyclerView.Adapter<ProfileOwnerAdapte
         holder.tv_nama_laudnry.setText(mData.get(position).getNamaLaundry());
 //        holder.tv_jarak.setText(mData.get(position).getPhone());
         holder.tv_alamat.setText(mData.get(position).getAlamat());
-        Glide.with(mContext).load(mData.get(position).getOwnerPhoto()).into(holder.img_owner_laundry_photo);
+        Glide.with(mContext).load(mData.get(position).getOwnerPhoto())
+                .into(holder.img_owner_laundry_photo);
         holder.rb_laundry.setRating(mData.get(position).getRate());
 
     }
@@ -79,12 +82,17 @@ public class ProfileOwnerAdapter extends RecyclerView.Adapter<ProfileOwnerAdapte
                     
                     int position = getAdapterPosition();
 
-                    laundryDetailAct.putExtra("namaLaundry", mData.get(position).getNamaLaundry());
-                    laundryDetailAct.putExtra("photo_pemilik", mData.get(position).getOwnerPhoto());
-                    laundryDetailAct.putExtra("photo_laundry", mData.get(position).getLaundryPhoto());
+                    laundryDetailAct.putExtra("namaLaundry", mData.get(position)
+                            .getNamaLaundry());
+                    laundryDetailAct.putExtra("photo_pemilik", mData.get(position)
+                            .getOwnerPhoto());
+                    laundryDetailAct.putExtra("photo_laundry", mData.get(position)
+                            .getLaundryPhoto());
                     laundryDetailAct.putExtra("rate", mData.get(position).getRate());
-                    laundryDetailAct.putExtra("nama_pemilik", mData.get(position).getOwnerName());
-                    laundryDetailAct.putExtra("laundryID", mData.get(position).getUserId());
+                    laundryDetailAct.putExtra("nama_pemilik", mData.get(position)
+                            .getOwnerName());
+                    laundryDetailAct.putExtra("laundryID", mData.get(position)
+                            .getUserId());
 
                     mContext.startActivity(laundryDetailAct);
                 }

@@ -10,6 +10,11 @@
             android:title="Home" />
 
         <item
+            android:id="@+id/nav_request_order"
+            android:icon="@drawable/ic_local_laundry_service_black_24dp"
+            android:title="Permintaan Laundry" />
+
+        <item
             android:id="@+id/nav_profile"
             android:icon="@drawable/ic_person_black_24dp"
             android:title="Profile" />

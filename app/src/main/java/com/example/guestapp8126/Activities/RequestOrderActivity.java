@@ -32,8 +32,7 @@ public class RequestOrderActivity extends AppCompatActivity {
 
     String idLaundry;
 
-    FirebaseDatabase database;
-    DatabaseReference requestOrderReff;
+
     FirebaseAuth auth;
     FirebaseUser user;
 
@@ -42,9 +41,7 @@ public class RequestOrderActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_request_order);
 
-        //firebase
-        database = FirebaseDatabase.getInstance();
-        requestOrderReff = database.getReference("RequestOrder");
+
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
 
@@ -116,8 +113,15 @@ public class RequestOrderActivity extends AppCompatActivity {
 
     private void saveToDatabase(RequestOrder requestOrder) {
 
+        //firebase
+        FirebaseDatabase database= FirebaseDatabase.getInstance();
+        DatabaseReference requestOrderReff = database.getReference("RequestOrder");
 
-        requestOrderReff.push().setValue(requestOrder).addOnSuccessListener(new OnSuccessListener<Void>() {
+        String key = requestOrderReff.push().getKey();
+        requestOrder.setOrderKey(key);
+
+
+        requestOrderReff.child(key).setValue(requestOrder).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
 
