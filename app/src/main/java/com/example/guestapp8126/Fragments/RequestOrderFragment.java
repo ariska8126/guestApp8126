@@ -57,8 +57,6 @@ public class RequestOrderFragment extends Fragment {
 
     List<RequestOrder> requestOrderList;
 
-
-
     public RequestOrderFragment() {
         // Required empty public constructor
     }

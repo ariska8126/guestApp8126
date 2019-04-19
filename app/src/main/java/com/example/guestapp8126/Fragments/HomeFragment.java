@@ -3,12 +3,30 @@ package com.example.guestapp8126.Fragments;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.example.guestapp8126.Adapters.TransaksiAdapter;
+import com.example.guestapp8126.Models.Transaksi;
 import com.example.guestapp8126.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,6 +47,17 @@ public class HomeFragment extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+
+    //init
+    TextView tv_name, tv_email;
+    ImageView imgv_userphoto;
+
+    //recyclerview
+    RecyclerView rv_transaksi;
+    DatabaseReference transReff;
+    FirebaseUser user;
+    TransaksiAdapter transaksiAdapter;
+    List<Transaksi> transaksiList;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -65,7 +94,56 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
+
+        View homeView = inflater.inflate(R.layout.fragment_home,
+                container, false);
+
+        tv_email = homeView.findViewById(R.id.tv_email_fh);
+        tv_name = homeView.findViewById(R.id.tv_name_fh);
+        imgv_userphoto = homeView.findViewById(R.id.imgv_userphoto_fh);
+
+        rv_transaksi = homeView.findViewById(R.id.rv_transaksi_fh);
+        rv_transaksi.setLayoutManager(new LinearLayoutManager(getActivity()));
+        rv_transaksi.setHasFixedSize(true);
+
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        transReff = FirebaseDatabase.getInstance().getReference("Transaksi");
+
+        tv_name.setText(user.getDisplayName());
+        tv_email.setText(user.getEmail());
+        Glide.with(this).load(user.getPhotoUrl()).into(imgv_userphoto);
+
+        return homeView;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        transReff.orderByChild("idGuest").equalTo(user.getUid())
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                        transaksiList = new ArrayList<>();
+
+                        for (DataSnapshot transSnap: dataSnapshot.getChildren()){
+
+                            Transaksi transaksi = transSnap.getValue(Transaksi.class);
+                            transaksiList.add(transaksi);
+                        }
+
+                        transaksiAdapter = new TransaksiAdapter(getActivity(), transaksiList);
+                        rv_transaksi.setAdapter(transaksiAdapter);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event

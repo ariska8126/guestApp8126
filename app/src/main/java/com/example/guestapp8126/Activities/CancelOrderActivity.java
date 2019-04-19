@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.guestapp8126.Fragments.RequestOrderFragment;
 import com.example.guestapp8126.R;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -31,7 +32,8 @@ public class CancelOrderActivity extends AppCompatActivity {
         tv_key = findViewById(R.id.tv_keyOrder_co);
         tv_layanan = findViewById(R.id.tv_layanan_co);
         tv_nama_laundry = findViewById(R.id.tv_nama_laundry_co);
-        btn_yes = findViewById(R.id.btn_no_co);
+        btn_yes = findViewById(R.id.btn_yes_co);
+        btn_no = findViewById(R.id.btn_no_co);
 
         //get intent
         key = getIntent().getExtras().getString("orderKey");
@@ -46,10 +48,16 @@ public class CancelOrderActivity extends AppCompatActivity {
         tv_key.setText(key);
 
         //onclick
+        btn_no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
         btn_yes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 cancelOrder(key);
             }
         });
@@ -64,6 +72,8 @@ public class CancelOrderActivity extends AppCompatActivity {
         deleteReff.removeValue();
 
         Toast.makeText(this, "Pesanan Dibatalkan", Toast.LENGTH_SHORT).show();
+
+        updateUI();
 
 
     }

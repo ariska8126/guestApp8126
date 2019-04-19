@@ -1,4 +1,4 @@
-package com.example.guestapp8126.Test;
+package com.example.guestapp8126.Fragments;
 
 import android.content.Context;
 import android.net.Uri;
