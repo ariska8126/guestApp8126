@@ -32,10 +32,11 @@ import com.google.firebase.storage.UploadTask;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    EditText edt_guest_name, edt_guest_password, edt_guest_email, edt_guest_password2;
-    ImageView imgv_guest_photo;
-    Button btn_guest_register;
-    ProgressBar pb_guest_register;
+    private EditText edt_guest_name, edt_guest_password,
+            edt_guest_email, edt_guest_password2;
+    private ImageView imgv_guest_photo;
+    private Button btn_guest_register;
+    private ProgressBar pb_guest_register;
     private FirebaseAuth auth;
     private FirebaseUser user;
     static int REQUESTCODE = 1;
@@ -47,20 +48,24 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        //init view
         edt_guest_name = findViewById(R.id.edt_name_register);
         edt_guest_email = findViewById(R.id.edt_email_register);
         edt_guest_password = findViewById(R.id.edt_password_register);
         edt_guest_password2 = findViewById(R.id.edt_password2_register);
 
         imgv_guest_photo = findViewById(R.id.imgv_guest_photo_register);
+
         btn_guest_register= findViewById(R.id.btn_guest_register);
+
         pb_guest_register = findViewById(R.id.pb_guest_Register);
 
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
 
-        //onclick
+        pb_guest_register.setVisibility(View.INVISIBLE);
 
+        //onclick
         imgv_guest_photo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -149,7 +154,8 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void CreateUserAccount(String email, String password, final String name) {
 
-        auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+        auth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
 

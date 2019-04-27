@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.guestapp8126.Activities.ConfirmOrderDoneActivity;
 import com.example.guestapp8126.Models.Transaksi;
 import com.example.guestapp8126.R;
@@ -39,10 +40,12 @@ public class TransaksiAdapter extends RecyclerView.Adapter<TransaksiAdapter.MyVi
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
-        holder.tv_namaLaundry.setText(mData.get(position).getTransaksiKey());
+        holder.tv_namaLaundry.setText(mData.get(position).getNamaLaundry());
         holder.tv_layanan.setText(mData.get(position).getLayanan());
-        holder.tv_dateIn.setText(mData.get(position).getIdGuest());
-
+        holder.tv_desc.setText(mData.get(position).getDeskripsi());
+        holder.tv_status.setText(mData.get(position).getProses());
+//        holder.tv_dateIn.setText(mData.get(position).getIdGuest());
+        Glide.with(mContext).load(mData.get(position).getPhotoPelapak()).into(holder.imgv_guestPhoto);
         holder.tv_desc.setText(mData.get(position).getDeskripsi());
     }
 
@@ -75,7 +78,27 @@ public class TransaksiAdapter extends RecyclerView.Adapter<TransaksiAdapter.MyVi
                     int position = getAdapterPosition();
 
                     confirmOrderDone.putExtra("proses", mData.get(position).getProses());
-                    confirmOrderDone.putExtra("transKey", mData.get(position).getTransaksiKey());
+                    confirmOrderDone.putExtra("transKey", mData.get(position).getTransKey());
+                    confirmOrderDone.putExtra("namaLaundry", mData.get(position).getNamaLaundry());
+                    confirmOrderDone.putExtra("alamatLaundry", mData.get(position).getAlamatPelapak());
+                    confirmOrderDone.putExtra("photoLaundry", mData.get(position).getPhotoPelapak());
+                    confirmOrderDone.putExtra("statusBayar", mData.get(position).getStatusBayar());
+                    confirmOrderDone.putExtra("layanan", mData.get(position).getLayanan());
+                    confirmOrderDone.putExtra("deskripsi", mData.get(position).getDeskripsi());
+//                    confirmOrderDone.putExtra("timeStamp", mData.get(position).getTimeStamp());
+                    confirmOrderDone.putExtra("antarJemput", mData.get(position).getAntarjemput());
+                    confirmOrderDone.putExtra("longitudeLaundry", mData.get(position).getLongitudeLaundry());
+                    confirmOrderDone.putExtra("latitudeLaundry", mData.get(position).getLatitudeLaundry());
+                    confirmOrderDone.putExtra("idLaundry", mData.get(position).getIdLaundry());
+                    confirmOrderDone.putExtra("berat", mData.get(position).getBerat());
+                    confirmOrderDone.putExtra("biaya", mData.get(position).getBiaya());
+                    confirmOrderDone.putExtra("setrika", mData.get(position).getSetrika());
+                    confirmOrderDone.putExtra("guestId", mData.get(position).getIdGuest());
+                    confirmOrderDone.putExtra("namaGuest", mData.get(position).getNamaGuest());
+                    confirmOrderDone.putExtra("photoGuest", mData.get(position).getPhotoGuest());
+
+
+
 
                     mContext.startActivity(confirmOrderDone);
 

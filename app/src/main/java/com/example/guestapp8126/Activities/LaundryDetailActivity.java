@@ -23,15 +23,17 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class LaundryDetailActivity extends AppCompatActivity {
 
     ImageView imgv_photo_laundry, imgv_photo_user;
-    TextView tv_nama_laundry, tv_nama_pemilik, tv_id;
+    TextView tv_nama_laundry, tv_nama_pemilik, tv_alamat;
     RatingBar rate_laundry;
 
-    String idLaundry;
+    String photoLaundry,photoPelapak, namaLaundry, namaPelapak,
+            alamatPelapak, idLaundry, latitudeLaundry, longitudeLaundry;
+
+    Float rate;
 
     //layanan
     RecyclerView rv_layanan;
@@ -44,20 +46,19 @@ public class LaundryDetailActivity extends AppCompatActivity {
     FirebaseAuth auth;
     FirebaseUser currentUser;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_laundry_detail);
 
+        //init
         imgv_photo_laundry = findViewById(R.id.imgv_photo_laundry_dtl);
         imgv_photo_user = findViewById(R.id.imgv_user_photo_dtl);
         tv_nama_laundry = findViewById(R.id.tv_nama_laundry_dtl);
         tv_nama_pemilik = findViewById(R.id.tv_nama_pemilik_dtl);
         rate_laundry = findViewById(R.id.ratingBar_rate);
-        tv_id = findViewById(R.id.tv_id_dtl_rv);
+        tv_alamat = findViewById(R.id.tv_alamat_dtl_rv);
 
-        //layanan
         rv_layanan = findViewById(R.id.rv_layanan_dtl);
         rv_layanan.setLayoutManager(new LinearLayoutManager(this));
         rv_layanan.setHasFixedSize(true);
@@ -67,28 +68,28 @@ public class LaundryDetailActivity extends AppCompatActivity {
         firebaseDatabase = FirebaseDatabase.getInstance();
         reference = firebaseDatabase.getReference("LaundryService");
 
-
-
-        //user
         auth = FirebaseAuth.getInstance();
         currentUser = auth.getCurrentUser();
 
-
-        //bind intentto view
-        String image_pemilik = getIntent().getExtras().getString("photo_pemilik");
-        Glide.with(this).load(image_pemilik).into(imgv_photo_user);
-
-        String image_laundry = getIntent().getExtras().getString("photo_laundry");
-        Glide.with(this).load(image_laundry).into(imgv_photo_laundry);
-
-        String nama_laundry = getIntent().getExtras().getString("namaLaundry");
-        tv_nama_laundry.setText(nama_laundry);
-
-        String nama_pemilik = getIntent().getExtras().getString("nama_pemilik");
-        tv_nama_pemilik.setText(nama_pemilik);
+        //get Intent
+        photoLaundry = getIntent().getExtras().getString("photo_laundry");
+        photoPelapak = getIntent().getExtras().getString("photo_pemilik");
+        namaLaundry = getIntent().getExtras().getString("namaLaundry");
+        namaPelapak = getIntent().getExtras().getString("nama_pemilik");
+        rate = getIntent().getExtras().getFloat("rate");
+        alamatPelapak = getIntent().getExtras().getString("alamat");
 
         idLaundry = getIntent().getExtras().getString("laundryID");
-        tv_id.setText(idLaundry);
+        latitudeLaundry = getIntent().getExtras().getString("latitudeLaundry");
+        longitudeLaundry = getIntent().getExtras().getString("longitudeLaundry");
+
+        //bind intentto view
+        Glide.with(this).load(photoPelapak).into(imgv_photo_user);
+        Glide.with(this).load(photoLaundry).into(imgv_photo_laundry);
+        tv_nama_laundry.setText(namaLaundry);
+        tv_nama_pemilik.setText(namaPelapak);
+        tv_alamat.setText(alamatPelapak);
+        rate_laundry.setRating(rate);
 
 
         reference.orderByChild("userId").equalTo(idLaundry).addValueEventListener(new ValueEventListener() {

@@ -19,6 +19,8 @@ import com.example.guestapp8126.Models.OwnerLaundry;
 import com.example.guestapp8126.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
 
@@ -46,12 +48,14 @@ public class ProfileOwnerAdapter extends RecyclerView.Adapter<ProfileOwnerAdapte
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
+
+
         holder.tv_nama_laudnry.setText(mData.get(position).getNamaLaundry());
-//        holder.tv_jarak.setText(mData.get(position).getPhone());
         holder.tv_alamat.setText(mData.get(position).getAlamat());
         Glide.with(mContext).load(mData.get(position).getOwnerPhoto())
                 .into(holder.img_owner_laundry_photo);
         holder.rb_laundry.setRating(mData.get(position).getRate());
+
 
     }
 
@@ -65,6 +69,7 @@ public class ProfileOwnerAdapter extends RecyclerView.Adapter<ProfileOwnerAdapte
         RatingBar rb_laundry;
         TextView tv_nama_laudnry, tv_alamat, tv_jarak;
         ImageView img_owner_laundry_photo;
+        DatabaseReference guestRef, laundryRef;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -75,6 +80,13 @@ public class ProfileOwnerAdapter extends RecyclerView.Adapter<ProfileOwnerAdapte
             rb_laundry = itemView.findViewById(R.id.rb_laundry_sr);
             img_owner_laundry_photo = itemView.findViewById(R.id.imgv_user_photo_sr);
 
+            guestRef = FirebaseDatabase.getInstance().getReference("GuestLaundry");
+            laundryRef = FirebaseDatabase.getInstance().getReference("OwnerLaundry");
+
+            double a = 1;
+            double b = 2;
+            double c = a*b;
+
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -82,17 +94,24 @@ public class ProfileOwnerAdapter extends RecyclerView.Adapter<ProfileOwnerAdapte
                     
                     int position = getAdapterPosition();
 
-                    laundryDetailAct.putExtra("namaLaundry", mData.get(position)
-                            .getNamaLaundry());
-                    laundryDetailAct.putExtra("photo_pemilik", mData.get(position)
-                            .getOwnerPhoto());
                     laundryDetailAct.putExtra("photo_laundry", mData.get(position)
                             .getLaundryPhoto());
-                    laundryDetailAct.putExtra("rate", mData.get(position).getRate());
+                    laundryDetailAct.putExtra("photo_pemilik", mData.get(position)
+                            .getOwnerPhoto());
+                    laundryDetailAct.putExtra("namaLaundry", mData.get(position)
+                            .getNamaLaundry());
                     laundryDetailAct.putExtra("nama_pemilik", mData.get(position)
                             .getOwnerName());
+                    laundryDetailAct.putExtra("rate", mData.get(position)
+                            .getRate());
+                    laundryDetailAct.putExtra("alamat", mData.get(position)
+                            .getAlamat());
                     laundryDetailAct.putExtra("laundryID", mData.get(position)
                             .getUserId());
+                    laundryDetailAct.putExtra("latitudeLaundry", mData.get(position)
+                            .getLatitude());
+                    laundryDetailAct.putExtra("longitudeLaundry", mData.get(position)
+                            .getLongitude());
 
                     mContext.startActivity(laundryDetailAct);
                 }

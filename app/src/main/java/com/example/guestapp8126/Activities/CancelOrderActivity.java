@@ -5,20 +5,23 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.guestapp8126.Fragments.RequestOrderFragment;
+import com.bumptech.glide.Glide;
 import com.example.guestapp8126.R;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class CancelOrderActivity extends AppCompatActivity {
 
-    TextView tv_layanan, tv_nama_laundry, tv_key, tv_desc;
+    TextView tv_namaLaundry, tv_namaPemilik, tv_layanan, tv_setrika, tv_antarJemput, tv_desc;
     Button btn_yes, btn_no;
+    ImageView imgv_photoPelapak;
 
-    String layanan, nama, key, desc;
+    String orderKey, idLaundry, layanan, deskripsi,
+            setrika, antarJemput, namaLaundry, namaPemilik, photoPemilik;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,24 +31,35 @@ public class CancelOrderActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Batalkan Order");
 
         //init view
-        tv_desc = findViewById(R.id.tv_desc_co);
-        tv_key = findViewById(R.id.tv_keyOrder_co);
-        tv_layanan = findViewById(R.id.tv_layanan_co);
-        tv_nama_laundry = findViewById(R.id.tv_nama_laundry_co);
+        tv_namaLaundry = findViewById(R.id.tv_namaLaundry_co);
+        tv_namaPemilik = findViewById(R.id.tv_namaPemilik_co);
+        tv_desc = findViewById(R.id.tv_deskripsi_co);
+        tv_layanan = findViewById(R.id.tv_pakat_layanan_co);
+        tv_setrika = findViewById(R.id.tv_setrika_co);
+        tv_antarJemput = findViewById(R.id.tv_antarJemput_co);
         btn_yes = findViewById(R.id.btn_yes_co);
         btn_no = findViewById(R.id.btn_no_co);
+        imgv_photoPelapak = findViewById(R.id.imgv_photoPelapak_co);
 
         //get intent
-        key = getIntent().getExtras().getString("orderKey");
-        nama = getIntent().getExtras().getString("idLaundry");
+        orderKey = getIntent().getExtras().getString("orderKey");
+        idLaundry = getIntent().getExtras().getString("idLaundry");
         layanan = getIntent().getExtras().getString("layanan");
-        desc = getIntent().getExtras().getString("deskripsi");
+        deskripsi = getIntent().getExtras().getString("deskripsi");
+        setrika = getIntent().getExtras().getString("setrika");
+        antarJemput = getIntent().getExtras().getString("antarJemput");
+        namaLaundry = getIntent().getExtras().getString("namaLaundry");
+        namaPemilik = getIntent().getExtras().getString("namaPemilik");
+        photoPemilik = getIntent().getExtras().getString("photoPemilik");
 
         //bind view
-        tv_nama_laundry.setText(nama);
+        tv_namaLaundry.setText(namaLaundry);
+        tv_namaPemilik.setText(namaPemilik);
         tv_layanan.setText(layanan);
-        tv_desc.setText(desc);
-        tv_key.setText(key);
+        tv_setrika.setText(setrika);
+        tv_antarJemput.setText(antarJemput);
+        tv_desc.setText(deskripsi);
+        Glide.with(this).load(photoPemilik).into(imgv_photoPelapak);
 
         //onclick
         btn_no.setOnClickListener(new View.OnClickListener() {
@@ -58,7 +72,7 @@ public class CancelOrderActivity extends AppCompatActivity {
         btn_yes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                cancelOrder(key);
+                cancelOrder(orderKey);
             }
         });
 
@@ -74,8 +88,6 @@ public class CancelOrderActivity extends AppCompatActivity {
         Toast.makeText(this, "Pesanan Dibatalkan", Toast.LENGTH_SHORT).show();
 
         updateUI();
-
-
     }
 
     private void updateUI() {

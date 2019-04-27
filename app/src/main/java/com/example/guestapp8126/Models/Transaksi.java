@@ -2,133 +2,104 @@ package com.example.guestapp8126.Models;
 
 public class Transaksi {
 
-    Object timeStamp;
-    String transaksiKey;
-    String idLaundry;
-    String idGuest;
-    String layanan;
-    String deskripsi;
-    Boolean antarJemput;
-    Boolean setrika;
-    String pewangi;
+    String namaPelapak;
+    String photoGuest;
+    String longitudeLaundry;
+    String latitudeLaundry;
+    String longitudeGuest;
+    String latitudeGuest;
     String namaGuest;
-    Double latitudeGuest;
-    Double longitudeGuest;
-    Double latitudeLaundry;
-    Double longitudeLaundry;
+    String idGuest;
+    String idLaundry;
+    String setrika;
+    String antarjemput;
+    String deskripsi;
+    String layanan;
+    String transKey;
+    String photoPelapak;
+    String alamatPelapak;
     String namaLaundry;
+    Object timeStamp;
+    Float berat;
+    int biaya;
     String proses;
-    Double berat;
-    Double biaya;
-    String status;
-    String alamatLaundry;
-    String prosesSetrika;
+    String statusBayar;
 
     public Transaksi() {
     }
 
-    public Transaksi(String idLaundry, String idGuest, String layanan, String deskripsi) {
-        this.idLaundry = idLaundry;
+    public Transaksi(String namaPelapak, String photoGuest, String longitudeLaundry,
+                     String latitudeLaundry, String longitudeGuest, String latitudeGuest,
+                     String namaGuest, String idGuest, String idLaundry, String setrika,
+                     String antarjemput, String deskripsi, String layanan, String transKey,
+                     String photoPelapak, String alamatPelapak, String namaLaundry,
+                     String proses) {
+        this.namaPelapak = namaPelapak;
+        this.photoGuest = photoGuest;
+        this.longitudeLaundry = longitudeLaundry;
+        this.latitudeLaundry = latitudeLaundry;
+        this.longitudeGuest = longitudeGuest;
+        this.latitudeGuest = latitudeGuest;
+        this.namaGuest = namaGuest;
         this.idGuest = idGuest;
-        this.layanan = layanan;
-        this.deskripsi = deskripsi;
-    }
-
-    //    public Transaksi(String idLaundry, String idGuest, String layanan,
-//                     String deskripsi, Boolean antarJemput, Boolean setrika,
-//                     String pewangi, String namaGuest, Double latitudeGuest,
-//                     Double longitudeGuest, Double latitudeLaundry,
-//                     Double longitudeLaundry, String namaLaundry, String proses,
-//                      String alamatLaundry, String prosesSetrika) {
-//
-//        this.idLaundry = idLaundry;
-//        this.idGuest = idGuest;
-//        this.layanan = layanan;
-//        this.deskripsi = deskripsi;
-//        this.antarJemput = antarJemput;
-//        this.setrika = setrika;
-//        this.pewangi = pewangi;
-//        this.namaGuest = namaGuest;
-//        this.latitudeGuest = latitudeGuest;
-//        this.longitudeGuest = longitudeGuest;
-//        this.latitudeLaundry = latitudeLaundry;
-//        this.longitudeLaundry = longitudeLaundry;
-//        this.namaLaundry = namaLaundry;
-//        this.proses = proses;
-//          this.alamatLaundry = alamatLaundry;
-//    this.prosesSetrika = prosesSetrika;
-//    }
-
-    public Object getTimeStamp() {
-        return timeStamp;
-    }
-
-    public void setTimeStamp(Object timeStamp) {
-        this.timeStamp = timeStamp;
-    }
-
-    public String getTransaksiKey() {
-        return transaksiKey;
-    }
-
-    public void setTransaksiKey(String transaksiKey) {
-        this.transaksiKey = transaksiKey;
-    }
-
-    public String getIdLaundry() {
-        return idLaundry;
-    }
-
-    public void setIdLaundry(String idLaundry) {
         this.idLaundry = idLaundry;
-    }
-
-    public String getIdGuest() {
-        return idGuest;
-    }
-
-    public void setIdGuest(String idGuest) {
-        this.idGuest = idGuest;
-    }
-
-    public String getLayanan() {
-        return layanan;
-    }
-
-    public void setLayanan(String layanan) {
-        this.layanan = layanan;
-    }
-
-    public String getDeskripsi() {
-        return deskripsi;
-    }
-
-    public void setDeskripsi(String deskripsi) {
-        this.deskripsi = deskripsi;
-    }
-
-    public Boolean getAntarJemput() {
-        return antarJemput;
-    }
-
-    public void setAntarJemput(Boolean antarJemput) {
-        this.antarJemput = antarJemput;
-    }
-
-    public Boolean getSetrika() {
-        return setrika;
-    }
-
-    public void setSetrika(Boolean setrika) {
         this.setrika = setrika;
+        this.antarjemput = antarjemput;
+        this.deskripsi = deskripsi;
+        this.layanan = layanan;
+        this.transKey = transKey;
+        this.photoPelapak = photoPelapak;
+        this.alamatPelapak = alamatPelapak;
+        this.namaLaundry = namaLaundry;
+        this.proses = proses;
     }
 
-    public String getPewangi() {
-        return pewangi;
+    public String getNamaPelapak() {
+        return namaPelapak;
     }
 
-    public void setPewangi(String pewangi) {
-        this.pewangi = pewangi;
+    public void setNamaPelapak(String namaPelapak) {
+        this.namaPelapak = namaPelapak;
+    }
+
+    public String getPhotoGuest() {
+        return photoGuest;
+    }
+
+    public void setPhotoGuest(String photoGuest) {
+        this.photoGuest = photoGuest;
+    }
+
+    public String getLongitudeLaundry() {
+        return longitudeLaundry;
+    }
+
+    public void setLongitudeLaundry(String longitudeLaundry) {
+        this.longitudeLaundry = longitudeLaundry;
+    }
+
+    public String getLatitudeLaundry() {
+        return latitudeLaundry;
+    }
+
+    public void setLatitudeLaundry(String latitudeLaundry) {
+        this.latitudeLaundry = latitudeLaundry;
+    }
+
+    public String getLongitudeGuest() {
+        return longitudeGuest;
+    }
+
+    public void setLongitudeGuest(String longitudeGuest) {
+        this.longitudeGuest = longitudeGuest;
+    }
+
+    public String getLatitudeGuest() {
+        return latitudeGuest;
+    }
+
+    public void setLatitudeGuest(String latitudeGuest) {
+        this.latitudeGuest = latitudeGuest;
     }
 
     public String getNamaGuest() {
@@ -139,36 +110,76 @@ public class Transaksi {
         this.namaGuest = namaGuest;
     }
 
-    public Double getLatitudeGuest() {
-        return latitudeGuest;
+    public String getIdGuest() {
+        return idGuest;
     }
 
-    public void setLatitudeGuest(Double latitudeGuest) {
-        this.latitudeGuest = latitudeGuest;
+    public void setIdGuest(String idGuest) {
+        this.idGuest = idGuest;
     }
 
-    public Double getLongitudeGuest() {
-        return longitudeGuest;
+    public String getIdLaundry() {
+        return idLaundry;
     }
 
-    public void setLongitudeGuest(Double longitudeGuest) {
-        this.longitudeGuest = longitudeGuest;
+    public void setIdLaundry(String idLaundry) {
+        this.idLaundry = idLaundry;
     }
 
-    public Double getLatitudeLaundry() {
-        return latitudeLaundry;
+    public String getSetrika() {
+        return setrika;
     }
 
-    public void setLatitudeLaundry(Double latitudeLaundry) {
-        this.latitudeLaundry = latitudeLaundry;
+    public void setSetrika(String setrika) {
+        this.setrika = setrika;
     }
 
-    public Double getLongitudeLaundry() {
-        return longitudeLaundry;
+    public String getAntarjemput() {
+        return antarjemput;
     }
 
-    public void setLongitudeLaundry(Double longitudeLaundry) {
-        this.longitudeLaundry = longitudeLaundry;
+    public void setAntarjemput(String antarjemput) {
+        this.antarjemput = antarjemput;
+    }
+
+    public String getDeskripsi() {
+        return deskripsi;
+    }
+
+    public void setDeskripsi(String deskripsi) {
+        this.deskripsi = deskripsi;
+    }
+
+    public String getLayanan() {
+        return layanan;
+    }
+
+    public void setLayanan(String layanan) {
+        this.layanan = layanan;
+    }
+
+    public String getTransKey() {
+        return transKey;
+    }
+
+    public void setTransKey(String transKey) {
+        this.transKey = transKey;
+    }
+
+    public String getPhotoPelapak() {
+        return photoPelapak;
+    }
+
+    public void setPhotoPelapak(String photoPelapak) {
+        this.photoPelapak = photoPelapak;
+    }
+
+    public String getAlamatPelapak() {
+        return alamatPelapak;
+    }
+
+    public void setAlamatPelapak(String alamatPelapak) {
+        this.alamatPelapak = alamatPelapak;
     }
 
     public String getNamaLaundry() {
@@ -179,6 +190,30 @@ public class Transaksi {
         this.namaLaundry = namaLaundry;
     }
 
+    public Object getTimeStamp() {
+        return timeStamp;
+    }
+
+    public void setTimeStamp(Object timeStamp) {
+        this.timeStamp = timeStamp;
+    }
+
+    public Float getBerat() {
+        return berat;
+    }
+
+    public void setBerat(Float berat) {
+        this.berat = berat;
+    }
+
+    public int getBiaya() {
+        return biaya;
+    }
+
+    public void setBiaya(int biaya) {
+        this.biaya = biaya;
+    }
+
     public String getProses() {
         return proses;
     }
@@ -187,27 +222,11 @@ public class Transaksi {
         this.proses = proses;
     }
 
-    public Double getBerat() {
-        return berat;
+    public String getStatusBayar() {
+        return statusBayar;
     }
 
-    public void setBerat(Double berat) {
-        this.berat = berat;
-    }
-
-    public Double getBiaya() {
-        return biaya;
-    }
-
-    public void setBiaya(Double biaya) {
-        this.biaya = biaya;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
+    public void setStatusBayar(String statusBayar) {
+        this.statusBayar = statusBayar;
     }
 }

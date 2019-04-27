@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.guestapp8126.R;
@@ -22,6 +23,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText edt_email_login, edt_password_login;
     private Button btn_sign_login, btn_daftar_login;
     private ProgressBar pb_login;
+    private TextView tv_atau;
 
     FirebaseAuth auth;
 
@@ -30,15 +32,24 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        //init view
         edt_email_login = findViewById(R.id.edt_guest_mail_login);
         edt_password_login = findViewById(R.id.edt_guest_password_login);
+
         btn_sign_login = findViewById(R.id.btn_login_login);
         btn_daftar_login = findViewById(R.id.btn_daftar_login);
+
         pb_login = findViewById(R.id.progressBar_login);
+
+        tv_atau = findViewById(R.id.tv_atau_login);
+
         auth = FirebaseAuth.getInstance();
 
+        //visibility
         pb_login.setVisibility(View.INVISIBLE);
+        tv_atau.setVisibility(View.VISIBLE);
 
+        //onClick
         btn_daftar_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -55,14 +66,15 @@ public class LoginActivity extends AppCompatActivity {
 
                 btn_daftar_login.setVisibility(View.INVISIBLE);
                 btn_sign_login.setVisibility(View.INVISIBLE);
-                pb_login.setVisibility(View.INVISIBLE);
+                tv_atau.setVisibility(View.INVISIBLE);
+                pb_login.setVisibility(View.VISIBLE);
 
                 final String mail = edt_email_login.getText().toString();
                 final String password = edt_password_login.getText().toString();
 
                 if (mail.isEmpty() || password.isEmpty()){
 
-                    showMessage("passtikan semua field sudah diisi!");
+                    showMessage("pastikan semua field sudah diisi!");
                     btn_daftar_login.setVisibility(View.VISIBLE);
                     btn_sign_login.setVisibility(View.VISIBLE);
                     pb_login.setVisibility(View.INVISIBLE);
@@ -94,10 +106,9 @@ public class LoginActivity extends AppCompatActivity {
                             showMessage(task.getException().getMessage());
                             btn_sign_login.setVisibility(View.VISIBLE);
                             btn_daftar_login.setVisibility(View.VISIBLE);
+                            tv_atau.setVisibility(View.VISIBLE);
                             pb_login.setVisibility(View.INVISIBLE);
                         }
-
-
                     }
                 });
     }

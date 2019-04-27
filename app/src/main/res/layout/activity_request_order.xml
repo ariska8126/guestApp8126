@@ -6,153 +6,218 @@
     android:layout_height="match_parent"
     tools:context=".Activities.RequestOrderActivity">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="24dp"
-        android:text="Order"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TableLayout
-        android:id="@+id/tableLayout"
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
+        app:layout_constraintTop_toTopOf="parent">
 
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp">
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/activity_vertical_margin"
-                android:text="Paket Layanan"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/tv_paket_layanan_ro"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="asdf"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/activity_vertical_margin"
-                android:text="Pewangi"
-                android:textSize="14sp" />
-
-            <Spinner
-                android:id="@+id/spinner_pewangi_ro"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/activity_vertical_margin"
-                android:text="Setrika"
-                android:textSize="14sp" />
-
-            <Switch
-                android:id="@+id/sw_setrika_ro"
+                android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Switch" />
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="Request Order"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        </TableRow>
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imgv_photoPelapak_ro"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/ic_launcher"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp">
+            <View
+                android:id="@+id/view8"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
+                android:background="#2e2e2e"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_namaPelapak_ro" />
 
-            <TextView
+            <TableLayout
+                android:id="@+id/tableLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/activity_vertical_margin"
-                android:text="Antar - Jemput"
-                android:textSize="14sp" />
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view8">
 
-            <Switch
-                android:id="@+id/sw_anjem_ro"
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/activity_vertical_margin"
+                        android:text="Paket Layanan"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tv_paket_layanan_ro"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="asdf"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                </TableRow>
+
+                <!--<TableRow-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginBottom="8dp">-->
+
+                <!--<TextView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginRight="@dimen/activity_vertical_margin"-->
+                <!--android:text="Pewangi"-->
+                <!--android:textSize="14sp" />-->
+
+                <!--<Spinner-->
+                <!--android:id="@+id/spinner_pewangi_ro"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content" />-->
+
+                <!--</TableRow>-->
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/activity_vertical_margin"
+                        android:text="Setrika"
+                        android:textSize="14sp" />
+
+                    <Switch
+                        android:id="@+id/sw_setrika_ro"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Switch" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/activity_vertical_margin"
+                        android:text="Antar - Jemput"
+                        android:textSize="14sp" />
+
+                    <Switch
+                        android:id="@+id/sw_anjem_ro"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Switch" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/activity_vertical_margin"
+                        android:text="Deskripsi"
+                        android:textSize="14sp" />
+
+                    <EditText
+                        android:id="@+id/edt_desc_ro"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:inputType="textMultiLine" />
+
+                </TableRow>
+
+            </TableLayout>
+
+            <Button
+                android:id="@+id/btn_order_ro"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Switch" />
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:text="order"
+                app:layout_constraintEnd_toEndOf="@+id/tableLayout"
+                app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
 
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp">
+            <Button
+                android:id="@+id/btn_cancel_ro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="24dp"
+                android:text="Cancel"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tableLayout"
+                app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/activity_vertical_margin"
-                android:text="Deskripsi"
-                android:textSize="14sp" />
-
-            <EditText
-                android:id="@+id/edt_desc_ro"
+                android:id="@+id/tv_namaLaundry_ro"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textMultiLine" />
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="4dp"
+                android:text="Nama Laundry"
+                app:layout_constraintStart_toEndOf="@+id/imgv_photoPelapak_ro"
+                app:layout_constraintTop_toTopOf="@+id/imgv_photoPelapak_ro" />
 
-        </TableRow>
+            <TextView
+                android:id="@+id/tv_namaPelapak_ro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Nama Pelapak"
+                app:layout_constraintStart_toStartOf="@+id/tv_namaLaundry_ro"
+                app:layout_constraintTop_toBottomOf="@+id/tv_namaLaundry_ro" />
 
-    </TableLayout>
+        </android.support.constraint.ConstraintLayout>
 
-    <Button
-        android:id="@+id/btn_order_ro"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="32dp"
-        android:text="order"
-        app:layout_constraintEnd_toEndOf="@+id/tableLayout"
-        app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
+    </android.support.v7.widget.CardView>
 
-    <Button
-        android:id="@+id/btn_cancel_ro"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:text="Cancel"
-        app:layout_constraintStart_toStartOf="@+id/tableLayout"
-        app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
+
 </android.support.constraint.ConstraintLayout>

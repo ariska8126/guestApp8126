@@ -47,8 +47,10 @@ public class SearchFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
+
+
     //SearchView
-    RecyclerView searchLaundry, searchLayanan;
+    RecyclerView searchLaundry;
     ProfileOwnerAdapter profileOwnerAdapter;
     LayananAdapter layananAdapter;
     FirebaseDatabase firebaseDatabase;
@@ -101,7 +103,7 @@ public class SearchFragment extends Fragment {
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         profilRef = firebaseDatabase.getReference("OwnerLaundry");
-        layananRef = firebaseDatabase.getReference("ServiceLaundry");
+
 
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
@@ -132,27 +134,6 @@ public class SearchFragment extends Fragment {
 
                     }
                 });
-
-//        layananRef.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//
-//                layananList = new ArrayList<>();
-//                for (DataSnapshot layananSnapshot: dataSnapshot.getChildren()){
-//
-//                    Layanan layanan = layananSnapshot.getValue(Layanan.class);
-//                    layananList.add(layanan);
-//                }
-//
-//                layananAdapter = new LayananAdapter(getActivity(), layananList);
-//                searchLayanan.setAdapter(layananAdapter);
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        });
 
     }
 

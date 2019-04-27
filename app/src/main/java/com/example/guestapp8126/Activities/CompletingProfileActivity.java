@@ -55,26 +55,34 @@ public class CompletingProfileActivity extends AppCompatActivity {
 
         btn_get_location_cp = findViewById(R.id.btn_fetch);
         btn_submit_cp = findViewById(R.id.btn_submit_cp);
+
         pb_get_location_cp = findViewById(R.id.progressBar_getlokasi_cp);
         pb_submit_cp = findViewById(R.id.progressBar_submit_cp);
+
         edt_alamat_cp = findViewById(R.id.edt_alamat_cp);
         edt_phone_cp = findViewById(R.id.edt_phone_cp);
+
         tv_email_cp = findViewById(R.id.tv_email_cp);
         tv_name_cp = findViewById(R.id.tv_name_cp);
         tv_location_cp = findViewById(R.id.user_location);
+
         imgv_photo_cp = findViewById(R.id.imgv_user_photo_cp);
+
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
+
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
-
+        //visibility
         pb_submit_cp.setVisibility(View.INVISIBLE);
         pb_get_location_cp.setVisibility(View.INVISIBLE);
 
+        //bind view from auth
         Glide.with(this).load(currentUser.getPhotoUrl()).into(imgv_photo_cp);
         tv_name_cp.setText(currentUser.getDisplayName());
         tv_email_cp.setText(currentUser.getEmail());
 
+        //onClick
         btn_get_location_cp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

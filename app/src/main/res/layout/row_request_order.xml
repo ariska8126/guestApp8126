@@ -3,142 +3,102 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="186dp"
-    android:background="@drawable/bg_style_popup"
-    android:layout_marginBottom="@dimen/default_padding">
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/default_padding"
+    android:background="@drawable/bg_style_popup">
 
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imgv_photoPelapak_rro"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/ic_launcher"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_layanan_rro"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView18" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/textView18"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="Paket Layanan"
+        android:text="ID:"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/tv_namaLaundry_rro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Pewangi"
-        app:layout_constraintStart_toStartOf="@+id/textView6"
-        app:layout_constraintTop_toBottomOf="@+id/tv_pakat_layanan_rro" />
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="@+id/textView18"
+        app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
     <TextView
-        android:id="@+id/textView9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Setrika"
-        app:layout_constraintStart_toStartOf="@+id/textView8"
-        app:layout_constraintTop_toBottomOf="@+id/tv_pewangi_rro" />
-
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Antar - Jemput"
-        app:layout_constraintStart_toStartOf="@+id/textView9"
-        app:layout_constraintTop_toBottomOf="@+id/tv_setrika_rro" />
-
-    <TextView
-        android:id="@+id/textView11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Deskripsi"
-        app:layout_constraintStart_toStartOf="@+id/textView10"
-        app:layout_constraintTop_toBottomOf="@+id/tv_antarJemput_rro" />
-
-    <TextView
-        android:id="@+id/textView12"
+        android:id="@+id/textView23"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:text=":"
-        app:layout_constraintStart_toEndOf="@+id/textView6"
-        app:layout_constraintTop_toTopOf="@+id/textView6" />
+        android:text="|"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_namaLaundry_rro"
+        app:layout_constraintStart_toEndOf="@+id/tv_namaLaundry_rro" />
 
     <TextView
-        android:id="@+id/textView13"
+        android:id="@+id/tv_layanan_rro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=":"
-        app:layout_constraintEnd_toEndOf="@+id/textView12"
-        app:layout_constraintTop_toTopOf="@+id/textView8" />
-
-    <TextView
-        android:id="@+id/textView14"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=":"
-        app:layout_constraintEnd_toEndOf="@+id/textView13"
-        app:layout_constraintTop_toTopOf="@+id/textView9" />
-
-    <TextView
-        android:id="@+id/textView15"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=":"
-        app:layout_constraintEnd_toEndOf="@+id/textView14"
-        app:layout_constraintTop_toTopOf="@+id/textView10" />
-
-    <TextView
-        android:id="@+id/textView16"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=":"
-        app:layout_constraintBottom_toBottomOf="@+id/textView11"
-        app:layout_constraintEnd_toEndOf="@+id/textView15" />
-
-    <TextView
-        android:id="@+id/tv_pewangi_rro"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:text="TextView"
-        app:layout_constraintEnd_toEndOf="@+id/tv_pakat_layanan_rro"
-        app:layout_constraintStart_toStartOf="@+id/tv_pakat_layanan_rro"
-        app:layout_constraintTop_toTopOf="@+id/textView8" />
+        app:layout_constraintBottom_toBottomOf="@+id/tv_namaLaundry_rro"
+        app:layout_constraintStart_toEndOf="@+id/textView23" />
 
     <TextView
-        android:id="@+id/tv_setrika_rro"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="@+id/tv_pewangi_rro"
-        app:layout_constraintStart_toStartOf="@+id/tv_pewangi_rro"
-        app:layout_constraintTop_toTopOf="@+id/textView9" />
-
-    <TextView
-        android:id="@+id/tv_antarJemput_rro"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="@+id/tv_setrika_rro"
-        app:layout_constraintStart_toStartOf="@+id/tv_setrika_rro"
-        app:layout_constraintTop_toTopOf="@+id/textView10" />
-
-    <TextView
-        android:id="@+id/tv_pakat_layanan_rro"
+        android:id="@+id/tv_desc_rro"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView12"
-        app:layout_constraintTop_toTopOf="@+id/textView12" />
+        app:layout_constraintEnd_toEndOf="@+id/imgv_photoPelapak_rro"
+        app:layout_constraintStart_toStartOf="@+id/tv_namaLaundry_rro"
+        app:layout_constraintTop_toBottomOf="@+id/tv_namaLaundry_rro" />
 
     <TextView
-        android:id="@+id/tv_deskripsi_rro"
-        android:layout_width="0dp"
+        android:id="@+id/tv_key_rro"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:text="TextView"
-        app:layout_constraintEnd_toEndOf="@+id/tv_antarJemput_rro"
-        app:layout_constraintStart_toStartOf="@+id/tv_antarJemput_rro"
-        app:layout_constraintTop_toTopOf="@+id/textView11" />
+        app:layout_constraintStart_toEndOf="@+id/textView18"
+        app:layout_constraintTop_toTopOf="@+id/textView18" />
+
+    <View
+        android:id="@+id/view7"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:background="#2e2e2e"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_desc_rro" />
+
+    <TextView
+        android:id="@+id/tv_status_rro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="TextView"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/view7"
+        app:layout_constraintStart_toStartOf="@+id/view7"
+        app:layout_constraintTop_toBottomOf="@+id/view7" />
 </android.support.constraint.ConstraintLayout>

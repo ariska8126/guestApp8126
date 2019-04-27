@@ -1,10 +1,10 @@
 package com.example.guestapp8126.Activities;
 
-import android.app.Dialog;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.widget.RecyclerView;
+
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,40 +14,29 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
-import android.widget.EditText;
+
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.guestapp8126.Adapters.ProfileOwnerAdapter;
+
 import com.example.guestapp8126.Fragments.AboutFragment;
 import com.example.guestapp8126.Fragments.GuideFragment;
 import com.example.guestapp8126.Fragments.HomeFragment;
 import com.example.guestapp8126.Fragments.ProfileFragment;
 import com.example.guestapp8126.Fragments.RequestOrderFragment;
-import com.example.guestapp8126.Models.OwnerLaundry;
+
 import com.example.guestapp8126.R;
 import com.example.guestapp8126.Fragments.SearchFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+
 
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    //Popup
-    Dialog popupSearch;
-    EditText edt_search;
-    RecyclerView rv_result;
-    Button btn_bthome;
-    FirebaseDatabase database;
-    DatabaseReference ownerRef;
-    List<OwnerLaundry> ownerLaundryList;
-    ProfileOwnerAdapter profileOwnerAdapter;
     FloatingActionButton fab;
 
     //init
@@ -58,6 +47,7 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         //init firebase
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
@@ -152,8 +142,6 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_home) {
             // Handle the camera action
-
-
             fab.setVisibility(View.VISIBLE);
 
             getSupportActionBar().setTitle("Home");

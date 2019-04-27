@@ -7,8 +7,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.guestapp8126.Activities.CancelOrderActivity;
 import com.example.guestapp8126.Models.RequestOrder;
 import com.example.guestapp8126.R;
@@ -39,12 +41,13 @@ public class RequestOrderAdapter extends RecyclerView.Adapter<RequestOrderAdapte
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
-        holder.tv_setrika.setText(mData.get(position).getSetrika().toString());
-        holder.tv_namaLayanan.setText(mData.get(position).getPaketLayanan());
-        holder.tv_antarJemput.setText(mData.get(position).getAntarJemput().toString());
+        holder.tv_key.setText(mData.get(position).getOrderKey());
+        holder.tv_Layanan.setText(mData.get(position).getPaketLayanan());
         holder.tv_deskripsi.setText(mData.get(position).getDeskripsi());
-//        holder.tv_pewangi.setText(mData.get(position).getPewangi());
-
+        holder.tv_namaLaundry.setText(mData.get(position).getNamaLaundry());
+        holder.tv_status.setText(mData.get(position).getStatus());
+        Glide.with(mContext).load(mData.get(position).getPhotoPelapak())
+                .into(holder.imgv_photoPelapak);
     }
 
     @Override
@@ -54,16 +57,21 @@ public class RequestOrderAdapter extends RecyclerView.Adapter<RequestOrderAdapte
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView tv_namaLayanan, tv_deskripsi, tv_antarJemput, tv_setrika, tv_pewangi;
+        TextView tv_Layanan, tv_deskripsi, tv_key, tv_namaLaundry, tv_status;
+        ImageView imgv_photoPelapak;
 
         public MyViewHolder(View itemView) {
             super(itemView);
 
-            tv_antarJemput = itemView.findViewById(R.id.tv_antarJemput_rro);
-            tv_deskripsi = itemView.findViewById(R.id.tv_deskripsi_rro);
-            tv_namaLayanan = itemView.findViewById(R.id.tv_pakat_layanan_rro);
-            tv_pewangi = itemView.findViewById(R.id.tv_pewangi_rro);
-            tv_setrika = itemView.findViewById(R.id.tv_setrika_rro);
+
+            tv_deskripsi = itemView.findViewById(R.id.tv_desc_rro);
+            tv_key = itemView.findViewById(R.id.tv_key_rro);
+            tv_Layanan = itemView.findViewById(R.id.tv_layanan_rro);
+            tv_namaLaundry = itemView.findViewById(R.id.tv_namaLaundry_rro);
+            tv_status = itemView.findViewById(R.id.tv_status_rro);
+
+            imgv_photoPelapak = itemView.findViewById(R.id.imgv_photoPelapak_rro);
+
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -75,6 +83,11 @@ public class RequestOrderAdapter extends RecyclerView.Adapter<RequestOrderAdapte
                     cancelOrder.putExtra("idLaundry", mData.get(position).getIdLaundry());
                     cancelOrder.putExtra("layanan", mData.get(position).getPaketLayanan());
                     cancelOrder.putExtra("deskripsi", mData.get(position).getDeskripsi());
+                    cancelOrder.putExtra("setrika", mData.get(position).getSetrika());
+                    cancelOrder.putExtra("antarJemput", mData.get(position).getAntarJemput());
+                    cancelOrder.putExtra("namaLaundry", mData.get(position).getNamaLaundry());
+                    cancelOrder.putExtra("namaPemilik", mData.get(position).getNamaPelapak());
+                    cancelOrder.putExtra("photoPemilik", mData.get(position).getPhotoPelapak());
 
                     mContext.startActivity(cancelOrder);
 

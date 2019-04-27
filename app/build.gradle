@@ -52,6 +52,7 @@ dependencies {
 
     //getLocatoin Test
     implementation 'com.google.android.gms:play-services-location:16.0.0'
+    implementation 'com.android.support:cardview-v7:28.0.0'
 }
 
 apply plugin: 'com.google.gms.google-services'

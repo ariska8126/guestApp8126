@@ -74,7 +74,7 @@ public class LayananAdapter extends RecyclerView.Adapter<LayananAdapter.MyViewHo
                     int position = getAdapterPosition();
 
                     requestOrder.putExtra("idLaundry", mData.get(position).getUserId());
-                    requestOrder.putExtra("namaLayanan", mData.get(position).getNamaLayanan());
+                    requestOrder.putExtra("layanan", mData.get(position).getNamaLayanan());
 
                     mContext.startActivity(requestOrder);
 

@@ -11,6 +11,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.guestapp8126.Models.Feedback;
 import com.example.guestapp8126.R;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -33,7 +34,8 @@ public class PostFeedbackActivity extends AppCompatActivity {
     DatabaseReference feedBackReff;
     DatabaseReference deleteTransReff;
 
-    String idLaundry, idGuest, komentar, orderKey, namaGuest, namaLaundry, alamatLaundry;
+    String idLaundry, guestId, layanan, transKey, namaGuest, namaLaundry, alamatLaundry,
+            photoLaundry, photoGuest;
 
     Float rateValue;
 
@@ -64,11 +66,23 @@ public class PostFeedbackActivity extends AppCompatActivity {
             }
         });
 
-        //get value
-        idLaundry = "LoliPp1q6aXtkLHVlFdVwbbPVU43";
-        idGuest = user.getUid();
-        orderKey = "0987654321";
-        namaGuest = user.getDisplayName();
+        //get intent
+        photoLaundry= getIntent().getExtras().getString("photoLaundry");
+        namaLaundry = getIntent().getExtras().getString("namaLaundry");
+        alamatLaundry = getIntent().getExtras().getString("alamatLaundry");
+        layanan = getIntent().getExtras().getString("layanan");
+        idLaundry = getIntent().getExtras().getString("idLaundry");
+        transKey = getIntent().getExtras().getString("transKey");
+        guestId = getIntent().getExtras().getString("guestId");
+        namaGuest = getIntent().getExtras().getString("namaGuest");
+        photoGuest = getIntent().getExtras().getString("photoGuest");
+
+        //bind to view
+        tv_alamat.setText(alamatLaundry);
+        tv_namaLaundry.setText(namaLaundry);
+        tv_layanan.setText(layanan);
+
+        Glide.with(this).load(photoLaundry).into(imgv_laundry);
 
         //on click
         btn_submit.setOnClickListener(new View.OnClickListener() {
@@ -76,10 +90,11 @@ public class PostFeedbackActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (rb_rate != null && !edt_komentar.getText().toString().isEmpty()){
 
-                    Feedback feedback = new Feedback(idLaundry, idGuest,
-                            edt_komentar.getText().toString(), orderKey, rateValue, namaGuest);
+                    Feedback feedback = new Feedback(idLaundry, layanan,rateValue,
+                            edt_komentar.getText().toString(), transKey, guestId,
+                            photoGuest, namaGuest);
                     postFeedBack(feedback);
-                    deleteTrans(orderKey);
+                    deleteTrans(transKey);
                 }
             }
         });
@@ -98,7 +113,7 @@ public class PostFeedbackActivity extends AppCompatActivity {
 
         feedBackReff = FirebaseDatabase.getInstance().getReference("Feedback");
         String key = feedBackReff.push().getKey();
-        feedback.setFeedbackKey(key);
+        feedback.setFeebackKey(key);
 
         feedBackReff.child(key).setValue(feedback)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {

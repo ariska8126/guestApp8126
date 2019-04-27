@@ -1,7 +1,8 @@
 package com.example.guestapp8126.Models;
 
-public class OwnerLaundry {
+import java.util.Comparator;
 
+public class OwnerLaundry {
     private String ownerKey;
     private String userId;
     private String namaLaundry;
@@ -32,6 +33,7 @@ public class OwnerLaundry {
         this.ownerName = ownerName;
         this.ownerPhoto = ownerPhoto;
         this.laundryPhoto = laundryPhoto;
+
     }
 
     public OwnerLaundry() {
@@ -156,4 +158,6 @@ public class OwnerLaundry {
     public void setLaundryPhoto(String laundryPhoto) {
         this.laundryPhoto = laundryPhoto;
     }
+
+
 }

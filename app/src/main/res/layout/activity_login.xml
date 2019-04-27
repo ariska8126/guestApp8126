@@ -83,7 +83,7 @@
         app:layout_constraintTop_toBottomOf="@+id/edt_guest_password_login" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/tv_atau_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -107,7 +107,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_atau_login" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline3"
@@ -126,7 +126,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="@+id/btn_daftar_login"
-        app:layout_constraintEnd_toEndOf="@+id/textView3"
+        app:layout_constraintEnd_toEndOf="@+id/tv_atau_login"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/btn_login_login" />
 
