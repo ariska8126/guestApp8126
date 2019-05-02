@@ -55,7 +55,12 @@ public class ProfileOwnerAdapter extends RecyclerView.Adapter<ProfileOwnerAdapte
         Glide.with(mContext).load(mData.get(position).getOwnerPhoto())
                 .into(holder.img_owner_laundry_photo);
         holder.rb_laundry.setRating(mData.get(position).getRate());
-        holder.tv_jarak.setText(String.valueOf(mData.get(position).getJarak()));
+
+        Double s = mData.get(position).getJarak();
+
+        String formattedValue = String.format("%.1f", s);
+
+        holder.tv_jarak.setText(formattedValue);
 
     }
 
@@ -82,10 +87,6 @@ public class ProfileOwnerAdapter extends RecyclerView.Adapter<ProfileOwnerAdapte
 
             guestRef = FirebaseDatabase.getInstance().getReference("GuestLaundry");
             laundryRef = FirebaseDatabase.getInstance().getReference("OwnerLaundry");
-
-            double a = 1;
-            double b = 2;
-            double c = a*b;
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

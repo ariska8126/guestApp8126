@@ -109,8 +109,8 @@ public class CompletingProfileActivity extends AppCompatActivity {
                     GuestLaundry guestLaundry = new GuestLaundry(currentUser.getUid(),
                             edt_alamat_cp.getText().toString(),
                             edt_phone_cp.getText().toString(),
-                            latitude.toString(),
-                            longitude.toString(),
+                            latitude,
+                            longitude,
                             currentUser.getPhotoUrl().toString(),
                             currentUser.getDisplayName(),
                             currentUser.getEmail());

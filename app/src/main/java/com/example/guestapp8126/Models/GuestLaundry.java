@@ -6,13 +6,15 @@ public class GuestLaundry {
     private String guestId;
     private String guestAlamat;
     private String guestPhone;
-    private String guestLatitude;
-    private String guestLongitude;
+    private double guestLatitude;
+    private double guestLongitude;
     private String guestPhoto;
     private String guestName;
     private String guestMail;
 
-    public GuestLaundry(String guestId, String guestAlamat, String guestPhone, String guestLatitude, String guestLongitude, String guestPhoto, String guestName, String guestMail) {
+    public GuestLaundry(String guestId, String guestAlamat, String guestPhone,
+                        double guestLatitude, double guestLongitude, String guestPhoto,
+                        String guestName, String guestMail) {
         this.guestId = guestId;
         this.guestAlamat = guestAlamat;
         this.guestPhone = guestPhone;
@@ -66,19 +68,19 @@ public class GuestLaundry {
         this.guestPhone = guestPhone;
     }
 
-    public String getGuestLatitude() {
+    public double getGuestLatitude() {
         return guestLatitude;
     }
 
-    public void setGuestLatitude(String guestLatitude) {
+    public void setGuestLatitude(double guestLatitude) {
         this.guestLatitude = guestLatitude;
     }
 
-    public String getGuestLongitude() {
+    public double getGuestLongitude() {
         return guestLongitude;
     }
 
-    public void setGuestLongitude(String guestLongitude) {
+    public void setGuestLongitude(double guestLongitude) {
         this.guestLongitude = guestLongitude;
     }
 

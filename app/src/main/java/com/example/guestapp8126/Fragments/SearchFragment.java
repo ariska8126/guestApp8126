@@ -124,7 +124,8 @@ public class SearchFragment extends Fragment {
                 final double gLat = (double) dataSnapshot.child("guestLatitude").getValue();
                 final double gLong = (double) dataSnapshot.child("guestLongitude").getValue();
 
-                laundryRef.addValueEventListener(new ValueEventListener() {
+                laundryRef.orderByChild("statusBuka").equalTo("buka")
+                        .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
@@ -147,13 +148,6 @@ public class SearchFragment extends Fragment {
                             ownerLaundry.setJarak(jarak);
 
                             ownerLaundryList.add(ownerLaundry);
-
-
-
-//                            Distance distance = new Distance(photoLaundry, namaLaundry,
-//                                    idLaundry, guestId, rate, alamat, jarak, statusBuka);
-//
-//                            saveToDatabase(distance);
 
                         }
 
