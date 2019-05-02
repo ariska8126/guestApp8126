@@ -55,7 +55,7 @@ public class ProfileOwnerAdapter extends RecyclerView.Adapter<ProfileOwnerAdapte
         Glide.with(mContext).load(mData.get(position).getOwnerPhoto())
                 .into(holder.img_owner_laundry_photo);
         holder.rb_laundry.setRating(mData.get(position).getRate());
-
+        holder.tv_jarak.setText(String.valueOf(mData.get(position).getJarak()));
 
     }
 

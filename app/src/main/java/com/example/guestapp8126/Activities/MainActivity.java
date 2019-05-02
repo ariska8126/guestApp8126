@@ -31,16 +31,10 @@ import com.example.guestapp8126.Fragments.SearchFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-
-import java.util.List;
-
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     FloatingActionButton fab;
-
-    //init
-    FirebaseAuth mAuth;
     FirebaseUser currentUser;
 
     @Override
@@ -48,23 +42,16 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //init firebase
-        mAuth = FirebaseAuth.getInstance();
-        currentUser = mAuth.getCurrentUser();
+        currentUser = FirebaseAuth.getInstance().getCurrentUser();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         fab = (FloatingActionButton) findViewById(R.id.fab_search);
-
         fab.setVisibility(View.VISIBLE);
-
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-//                popupSearch.show();
-
                 fab.setVisibility(View.INVISIBLE);
 
                 getSupportActionBar().setTitle("Search");

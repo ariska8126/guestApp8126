@@ -25,6 +25,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -47,15 +49,12 @@ public class SearchFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-
-
-    //SearchView
     RecyclerView searchLaundry;
     ProfileOwnerAdapter profileOwnerAdapter;
     LayananAdapter layananAdapter;
+
     FirebaseDatabase firebaseDatabase;
-    DatabaseReference profilRef;
-    DatabaseReference layananRef;
+    DatabaseReference laundryRef, guestRef;
     FirebaseAuth mAuth;
     FirebaseUser currentUser;
     List<OwnerLaundry> ownerLaundryList;
@@ -96,17 +95,19 @@ public class SearchFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View searchView = inflater.inflate(R.layout.fragment_search, container, false);
+        View searchView = inflater.inflate(R.layout.fragment_search, container,
+                false);
         searchLaundry = searchView.findViewById(R.id.rv_result_fs);
         searchLaundry.setLayoutManager(new LinearLayoutManager(getActivity()));
         searchLaundry.setHasFixedSize(true);
 
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        profilRef = firebaseDatabase.getReference("OwnerLaundry");
-
-
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
+
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        laundryRef = firebaseDatabase.getReference("OwnerLaundry");
+        guestRef = firebaseDatabase.getReference("GuestLaundry").child(currentUser.getUid());
+
 
         return searchView;
     }
@@ -115,18 +116,57 @@ public class SearchFragment extends Fragment {
     public void onStart() {
         super.onStart();
 
-        profilRef.orderByChild("statusBuka").equalTo("buka")
-                .addValueEventListener(new ValueEventListener() {
+        guestRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                final String guestId = dataSnapshot.child("guestId").getValue().toString();
+                final double gLat = (double) dataSnapshot.child("guestLatitude").getValue();
+                final double gLong = (double) dataSnapshot.child("guestLongitude").getValue();
+
+                laundryRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
                         ownerLaundryList = new ArrayList<>();
-                        for (DataSnapshot ownerSnapshot: dataSnapshot.getChildren()){
-                            OwnerLaundry ownerLaundry = ownerSnapshot.getValue(OwnerLaundry.class);
+
+                        for (DataSnapshot lsnapshot: dataSnapshot.getChildren()){
+                            OwnerLaundry ownerLaundry = lsnapshot.getValue(OwnerLaundry.class);
+
+                            final String idLaundry = ownerLaundry.getUserId();
+                            final String photoLaundry = ownerLaundry.getOwnerPhoto();
+                            final String namaLaundry = ownerLaundry.getNamaLaundry();
+                            final String alamat = ownerLaundry.getAlamat();
+                            final double launLat = ownerLaundry.getLatitude();
+                            final double launLong = ownerLaundry.getLongitude();
+                            float rate = ownerLaundry.getRate();
+                            final String statusBuka = ownerLaundry.getStatusBuka();
+
+                            final double jarak = haversine(gLat, gLong, launLat, launLong);
+
+                            ownerLaundry.setJarak(jarak);
+
                             ownerLaundryList.add(ownerLaundry);
+
+
+
+//                            Distance distance = new Distance(photoLaundry, namaLaundry,
+//                                    idLaundry, guestId, rate, alamat, jarak, statusBuka);
+//
+//                            saveToDatabase(distance);
+
                         }
+
+                        Collections.sort(ownerLaundryList, new Comparator<OwnerLaundry>() {
+                            @Override
+                            public int compare(OwnerLaundry o1, OwnerLaundry o2) {
+                                return Double.compare(o1.getJarak(), o2.getJarak());
+                            }
+                        });
 
                         profileOwnerAdapter = new ProfileOwnerAdapter(getActivity(), ownerLaundryList);
                         searchLaundry.setAdapter(profileOwnerAdapter);
+
                     }
 
                     @Override
@@ -134,6 +174,35 @@ public class SearchFragment extends Fragment {
 
                     }
                 });
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        //show recycler view
+//        laundryRef.orderByChild("statusBuka").equalTo("buka")
+//                .addValueEventListener(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                        ownerLaundryList = new ArrayList<>();
+//                        for (DataSnapshot ownerSnapshot: dataSnapshot.getChildren()){
+//                            OwnerLaundry ownerLaundry = ownerSnapshot.getValue(OwnerLaundry.class);
+//                            ownerLaundryList.add(ownerLaundry);
+//                        }
+//
+//                        profileOwnerAdapter = new ProfileOwnerAdapter(getActivity(), ownerLaundryList);
+//                        searchLaundry.setAdapter(profileOwnerAdapter);
+//                    }
+//
+//                    @Override
+//                    public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//                    }
+//                });
 
     }
 
@@ -169,5 +238,25 @@ public class SearchFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    private double haversine(double gLat, double gLong, double launLat, double launLong) {
+
+        double R = 6372800; //meter
+
+        double dlat = toRadian(launLat-gLat);
+        double dlon = toRadian(launLong-gLong);
+        double lat1 = toRadian(gLat);
+        double lat2 = toRadian(launLat);
+
+        double a = Math.sin(dlat/2) * Math.sin(dlat/2) + Math.sin(dlon/2) * Math.sin(dlon/2) * Math.cos(lat1) * Math.cos(lat2);
+        double c = 2 * Math.asin(Math.sqrt(a));
+
+        return R * 2 * Math.asin(Math.sqrt(a));
+
+    }
+
+    private double toRadian(double v) {
+        return Math.PI*v/180;
     }
 }

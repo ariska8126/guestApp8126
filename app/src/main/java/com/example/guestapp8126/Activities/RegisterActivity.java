@@ -61,7 +61,6 @@ public class RegisterActivity extends AppCompatActivity {
         pb_guest_register = findViewById(R.id.pb_guest_Register);
 
         auth = FirebaseAuth.getInstance();
-        user = auth.getCurrentUser();
 
         pb_guest_register.setVisibility(View.INVISIBLE);
 
@@ -164,7 +163,7 @@ public class RegisterActivity extends AppCompatActivity {
                     showMessage("Account Created");
 
                     //update profil picture and name
-                    updateUserInfo(name, pickedImageUri, user);
+                    updateUserInfo(name, pickedImageUri, auth.getCurrentUser());
                 }
                 else
                 {
@@ -179,11 +178,15 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
-    private void updateUserInfo(final String name, Uri pickedImageUri, final FirebaseUser currentUser) {
+    private void updateUserInfo(final String name, Uri pickedImageUri,
+                                final FirebaseUser currentUser) {
 
-        StorageReference guestPhotoReference = FirebaseStorage.getInstance().getReference().child("guestPhotos");
-        final StorageReference imageFilePath = guestPhotoReference.child(pickedImageUri.getLastPathSegment());
-        imageFilePath.putFile(pickedImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+        StorageReference guestPhotoReference = FirebaseStorage.getInstance()
+                .getReference().child("guestPhotos");
+        final StorageReference imageFilePath = guestPhotoReference
+                .child(pickedImageUri.getLastPathSegment());
+        imageFilePath.putFile(pickedImageUri)
+                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
@@ -191,7 +194,8 @@ public class RegisterActivity extends AppCompatActivity {
                 imageFilePath.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
-                        UserProfileChangeRequest profileChangeRequest = new UserProfileChangeRequest.Builder()
+                        UserProfileChangeRequest profileChangeRequest =
+                                new UserProfileChangeRequest.Builder()
                                 .setDisplayName(name).setPhotoUri(uri).build();
 
                         currentUser.updateProfile(profileChangeRequest).addOnCompleteListener(new OnCompleteListener<Void>() {
