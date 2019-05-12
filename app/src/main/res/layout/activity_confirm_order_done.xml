@@ -90,7 +90,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
             <TextView
-                android:id="@+id/tv"
+                android:id="@+id/tv_layanan_dtla"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -116,8 +116,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:text="Deskripsi"
-                app:layout_constraintStart_toStartOf="@+id/tv"
-                app:layout_constraintTop_toBottomOf="@+id/tv" />
+                app:layout_constraintStart_toStartOf="@+id/tv_layanan_dtla"
+                app:layout_constraintTop_toBottomOf="@+id/tv_layanan_dtla" />
 
             <TextView
                 android:id="@+id/tv3"
@@ -197,7 +197,7 @@
                 android:text="TextView"
                 app:layout_constraintEnd_toEndOf="@+id/view4"
                 app:layout_constraintStart_toEndOf="@+id/textView24"
-                app:layout_constraintTop_toTopOf="@+id/tv" />
+                app:layout_constraintTop_toTopOf="@+id/tv_layanan_dtla" />
 
             <TextView
                 android:id="@+id/tv_desc_cod"
@@ -353,43 +353,42 @@
 
     </android.support.v7.widget.CardView>
 
-
-    <Button
-        android:id="@+id/btn_chat_cod"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="Chat"
-        app:layout_constraintBottom_toTopOf="@+id/btn_confirm_cod"
-        app:layout_constraintEnd_toStartOf="@+id/guideline10"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/btn_nav_cod"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="32dp"
-        android:text="Navigasi"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline10"
-        app:layout_constraintTop_toTopOf="@+id/btn_chat_cod" />
-
-    <Button
-        android:id="@+id/btn_confirm_cod"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:text="Konfirmasi Selesai"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/btn_nav_cod"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Navigasi"
+            tools:layout_editor_absoluteX="291dp"
+            tools:layout_editor_absoluteY="611dp" />
+
+        <Button
+            android:id="@+id/btn_chat_cod"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Chat"
+            tools:layout_editor_absoluteX="32dp"
+            tools:layout_editor_absoluteY="611dp" />
+
+        <Button
+            android:id="@+id/btn_confirm_cod"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Konfirmasi Selesai"
+            tools:layout_editor_absoluteX="32dp"
+            tools:layout_editor_absoluteY="667dp" />
+
+    </LinearLayout>
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline10"

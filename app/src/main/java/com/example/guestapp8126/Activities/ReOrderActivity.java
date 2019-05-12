@@ -14,7 +14,7 @@ import com.example.guestapp8126.R;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class CancelOrderActivity extends AppCompatActivity {
+public class ReOrderActivity extends AppCompatActivity {
 
     TextView tv_namaLaundry, tv_namaPemilik, tv_layanan, tv_setrika, tv_antarJemput, tv_desc;
     Button btn_yes, btn_no;
@@ -65,6 +65,7 @@ public class CancelOrderActivity extends AppCompatActivity {
         btn_no.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                cancelOrder(orderKey);
                 finish();
             }
         });
@@ -72,7 +73,9 @@ public class CancelOrderActivity extends AppCompatActivity {
         btn_yes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                cancelOrder(orderKey);
+                DatabaseReference reference = FirebaseDatabase.getInstance()
+                        .getReference("RequestOrder").child(orderKey);
+                reference.child("status").setValue("Menunggu Konfirmasi");
             }
         });
 

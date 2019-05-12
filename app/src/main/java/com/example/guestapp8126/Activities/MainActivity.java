@@ -38,6 +38,13 @@ public class MainActivity extends AppCompatActivity
     FirebaseUser currentUser;
 
     @Override
+    protected void onPostResume() {
+        super.onPostResume();
+
+        fab.setVisibility(View.VISIBLE);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -54,8 +61,13 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View view) {
                 fab.setVisibility(View.INVISIBLE);
 
-                getSupportActionBar().setTitle("Search");
-                getSupportFragmentManager().beginTransaction().replace(R.id.container, new SearchFragment()).commit();
+//                getSupportActionBar().setTitle("Search");
+//                getSupportFragmentManager().beginTransaction().replace(R.id.container, new SearchFragment()).commit();
+
+                //test
+                Intent intent = new Intent(MainActivity.this, CariCariActivity.class);
+                startActivity(intent);
+
             }
         });
 

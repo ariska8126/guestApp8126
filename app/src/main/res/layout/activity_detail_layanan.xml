@@ -1,17 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView
+<android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.LaundryDetailActivity">
-    
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    tools:context=".Activities.DetailLayananActivity">
 
-        <ImageView
+    <Button
+        android:id="@+id/btn_navigate_dtla"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:text="Navigate"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_order_dtla"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
             android:id="@+id/imgv_photo_laundry_dtla"
             android:layout_width="match_parent"
             android:layout_height="256dp"
@@ -67,30 +72,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_nama_pemilik_dtla" />
 
-        <TextView
-            android:id="@+id/tv_layanan_dtla"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:text="Layanan"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/view2" />
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_layanan_dtl"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_layanan_dtla" />
-
-        <de.hdodenhof.circleimageview.CircleImageView
+    <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imgv_user_photo_dtla"
             android:layout_width="48dp"
             android:layout_height="48dp"
@@ -109,17 +91,74 @@
             app:layout_constraintStart_toStartOf="@+id/tv_nama_pemilik_dtla"
             app:layout_constraintTop_toBottomOf="@+id/tv_nama_pemilik_dtla" />
 
-        <Button
-            android:id="@+id/btn_order_dtla"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
-            android:text="Navigate"
-            app:layout_constraintBottom_toBottomOf="@+id/imgv_photo_laundry_dtla"
-            app:layout_constraintEnd_toEndOf="parent" />
+    <Button
+        android:id="@+id/btn_order_dtla"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="24dp"
+        android:text="Order"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_navigate_dtla"
+        app:layout_constraintStart_toEndOf="@+id/btn_cancel_dtla" />
 
+    <Button
+        android:id="@+id/btn_cancel_dtla"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:text="Cancel"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_order_dtla"
+        app:layout_constraintStart_toStartOf="parent" />
 
-    </android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/tv_layanan_dtla"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="TextView"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/textView8"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
-</android.support.v4.widget.NestedScrollView>
+    <TextView
+        android:id="@+id/tv_desc_dtla"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="desc"
+        app:layout_constraintStart_toStartOf="@+id/tv_layanan_dtla"
+        app:layout_constraintTop_toBottomOf="@+id/tv_layanan_dtla" />
+
+    <TextView
+        android:id="@+id/textView37"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Rp."
+        app:layout_constraintStart_toStartOf="@+id/tv_desc_dtla"
+        app:layout_constraintTop_toBottomOf="@+id/tv_desc_dtla" />
+
+    <TextView
+        android:id="@+id/tv_biaya_dtla"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="@+id/textView37"
+        app:layout_constraintStart_toEndOf="@+id/textView37" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Layanan"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view2" />
+
+</android.support.constraint.ConstraintLayout>

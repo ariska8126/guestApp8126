@@ -26,7 +26,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.net.URI;
 import java.util.ArrayList;
 
 public class LaundryDetailActivity extends AppCompatActivity {
@@ -56,7 +55,6 @@ public class LaundryDetailActivity extends AppCompatActivity {
     Uri gmmIntentUri;
     Intent mapIntent;
     String tujuan;
-    TextView tv_test;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,14 +62,14 @@ public class LaundryDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_laundry_detail);
 
         //init
-        imgv_photo_laundry = findViewById(R.id.imgv_photo_laundry_dtl);
-        imgv_photo_user = findViewById(R.id.imgv_user_photo_dtl);
-        tv_nama_laundry = findViewById(R.id.tv_nama_laundry_dtl);
-        tv_nama_pemilik = findViewById(R.id.tv_nama_pemilik_dtl);
-        rate_laundry = findViewById(R.id.ratingBar_rate);
-        tv_alamat = findViewById(R.id.tv_alamat_dtl_rv);
+        imgv_photo_laundry = findViewById(R.id.imgv_photo_laundry_dtla);
+        imgv_photo_user = findViewById(R.id.imgv_user_photo_dtla);
+        tv_nama_laundry = findViewById(R.id.tv_nama_laundry_dtla);
+        tv_nama_pemilik = findViewById(R.id.tv_nama_pemilik_dtla);
+        rate_laundry = findViewById(R.id.ratingBar_rate_dtla);
+        tv_alamat = findViewById(R.id.tv_alamat_dtla);
 
-        btn_navigate = findViewById(R.id.btn_navigate_dtl);
+        btn_navigate = findViewById(R.id.btn_order_dtla);
 
         rv_layanan = findViewById(R.id.rv_layanan_dtl);
         rv_layanan.setLayoutManager(new LinearLayoutManager(this));
@@ -87,20 +85,17 @@ public class LaundryDetailActivity extends AppCompatActivity {
         currentUser = auth.getCurrentUser();
 
         //get Intent
+        idLaundry = getIntent().getExtras().getString("laundryID");
+
+        //change to reload from db
+        latitudeLaundry = getIntent().getExtras().getString("latitudeLaundry");
+        longitudeLaundry = getIntent().getExtras().getString("longitudeLaundry");
         photoLaundry = getIntent().getExtras().getString("photo_laundry");
         photoPelapak = getIntent().getExtras().getString("photo_pemilik");
         namaLaundry = getIntent().getExtras().getString("namaLaundry");
         namaPelapak = getIntent().getExtras().getString("nama_pemilik");
         rate = getIntent().getExtras().getFloat("rate");
         alamatPelapak = getIntent().getExtras().getString("alamat");
-
-        idLaundry = getIntent().getExtras().getString("laundryID");
-        latitudeLaundry = getIntent().getExtras().getString("latitudeLaundry");
-        longitudeLaundry = getIntent().getExtras().getString("longitudeLaundry");
-
-
-        tv_test = findViewById(R.id.tv_test_dtl);
-
 
         laundryRef.child(idLaundry).addValueEventListener(new ValueEventListener() {
             @Override
@@ -110,7 +105,6 @@ public class LaundryDetailActivity extends AppCompatActivity {
                 final double latitude = (double) dataSnapshot.child("latitude").getValue();
 
                 tujuan = latitude+", "+longitude;
-                tv_test.setText(tujuan);
 
                 btn_navigate.setOnClickListener(new View.OnClickListener() {
                     @Override

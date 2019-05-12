@@ -7,9 +7,12 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import com.example.guestapp8126.Adapters.LayananAdapter;
 import com.example.guestapp8126.Adapters.ProfileOwnerAdapter;
@@ -22,6 +25,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -58,7 +62,10 @@ public class SearchFragment extends Fragment {
     FirebaseAuth mAuth;
     FirebaseUser currentUser;
     List<OwnerLaundry> ownerLaundryList;
-    List<Layanan> layananList;
+
+    Query query1;
+
+    EditText edt_search;
 
     public SearchFragment() {
         // Required empty public constructor
@@ -95,7 +102,7 @@ public class SearchFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View searchView = inflater.inflate(R.layout.fragment_search, container,
+        final View searchView = inflater.inflate(R.layout.fragment_search, container,
                 false);
         searchLaundry = searchView.findViewById(R.id.rv_result_fs);
         searchLaundry.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -108,8 +115,62 @@ public class SearchFragment extends Fragment {
         laundryRef = firebaseDatabase.getReference("OwnerLaundry");
         guestRef = firebaseDatabase.getReference("GuestLaundry").child(currentUser.getUid());
 
+        edt_search = searchView.findViewById(R.id.edt_search_fs);
+
+        edt_search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+                if (!s.toString().isEmpty()){
+
+                    search(s.toString());
+                } else {
+
+                    search("");
+                }
+            }
+        });
 
         return searchView;
+    }
+
+    private void search(String as) {
+
+        laundryRef.orderByChild("alamat").startAt(as).endAt(as+"\uf8ff")
+                .addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.hasChildren()){
+
+                    ownerLaundryList = new ArrayList<>();
+                    for (DataSnapshot lapakSnap: dataSnapshot.getChildren()){
+
+                        OwnerLaundry ownerLaundry = lapakSnap.getValue(OwnerLaundry.class);
+                        ownerLaundryList.add(ownerLaundry);
+                    }
+
+                    profileOwnerAdapter = new ProfileOwnerAdapter(getActivity(), ownerLaundryList);
+                    searchLaundry.setAdapter(profileOwnerAdapter);
+                } else {
+                    ownerLaundryList.clear();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     @Override
@@ -130,6 +191,7 @@ public class SearchFragment extends Fragment {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                         ownerLaundryList = new ArrayList<>();
+                        ownerLaundryList.clear();
 
                         for (DataSnapshot lsnapshot: dataSnapshot.getChildren()){
                             OwnerLaundry ownerLaundry = lsnapshot.getValue(OwnerLaundry.class);
@@ -176,27 +238,6 @@ public class SearchFragment extends Fragment {
 
             }
         });
-
-        //show recycler view
-//        laundryRef.orderByChild("statusBuka").equalTo("buka")
-//                .addValueEventListener(new ValueEventListener() {
-//                    @Override
-//                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                        ownerLaundryList = new ArrayList<>();
-//                        for (DataSnapshot ownerSnapshot: dataSnapshot.getChildren()){
-//                            OwnerLaundry ownerLaundry = ownerSnapshot.getValue(OwnerLaundry.class);
-//                            ownerLaundryList.add(ownerLaundry);
-//                        }
-//
-//                        profileOwnerAdapter = new ProfileOwnerAdapter(getActivity(), ownerLaundryList);
-//                        searchLaundry.setAdapter(profileOwnerAdapter);
-//                    }
-//
-//                    @Override
-//                    public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//                    }
-//                });
 
     }
 

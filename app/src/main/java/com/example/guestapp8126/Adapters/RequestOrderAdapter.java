@@ -9,11 +9,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.example.guestapp8126.Activities.CancelOrderActivity;
+import com.example.guestapp8126.Activities.ReOrderActivity;
 import com.example.guestapp8126.Models.RequestOrder;
+import com.example.guestapp8126.Models.Transaksi;
 import com.example.guestapp8126.R;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
 
@@ -74,27 +79,95 @@ public class RequestOrderAdapter extends RecyclerView.Adapter<RequestOrderAdapte
 
 
             itemView.setOnClickListener(new View.OnClickListener() {
+
                 @Override
                 public void onClick(View view) {
-                    Intent cancelOrder = new Intent(mContext, CancelOrderActivity.class);
+
                     int position = getAdapterPosition();
 
-                    cancelOrder.putExtra("orderKey", mData.get(position).getOrderKey());
-                    cancelOrder.putExtra("idLaundry", mData.get(position).getIdLaundry());
-                    cancelOrder.putExtra("layanan", mData.get(position).getPaketLayanan());
-                    cancelOrder.putExtra("deskripsi", mData.get(position).getDeskripsi());
-                    cancelOrder.putExtra("setrika", mData.get(position).getSetrika());
-                    cancelOrder.putExtra("antarJemput", mData.get(position).getAntarJemput());
-                    cancelOrder.putExtra("namaLaundry", mData.get(position).getNamaLaundry());
-                    cancelOrder.putExtra("namaPemilik", mData.get(position).getNamaPelapak());
-                    cancelOrder.putExtra("photoPemilik", mData.get(position).getPhotoPelapak());
+                    final String status = mData.get(position).getStatus();
+                    final String transkey = mData.get(position).getOrderKey();
+                    final String namaPelapak = mData.get(position).getNamaPelapak();
+                    final String photoGuest = mData.get(position).getPhotoGuest();
 
-                    mContext.startActivity(cancelOrder);
+                    final String longitudeLaundry = mData.get(position).getLongitudeLaundry();
+                    final String latitudeLaundry = mData.get(position).getLatitudeLaundry();
+                    final String longitudeGuest = mData.get(position).getLongitudeGuest();
+                    final String latitudeGuest = mData.get(position).getLatitudeGuest();
+                    final Double lonG = Double.parseDouble(longitudeGuest);
+                    final Double latG = Double.parseDouble(latitudeGuest);
+                    final Double lonL = Double.parseDouble(longitudeLaundry);
+                    final Double latL = Double.parseDouble(latitudeLaundry);
 
+                    final String namaGuest = mData.get(position).getNamaGuest();
+                    final String idGuest = mData.get(position).getIdGuest();
+                    final String idLaundry = mData.get(position).getIdLaundry();
+                    final String setrika = mData.get(position).getSetrika();
+                    final String antarJemput = mData.get(position).getAntarJemput();
+                    final String deskripsi = mData.get(position).getDeskripsi();
+                    final String paketLayanan = mData.get(position).getPaketLayanan();
+                    final String photoPelapak = mData.get(position).getPhotoPelapak();
+                    final String alamatPelapak = mData.get(position).getAlamatPelapak();
+                    final String namaLaundry = mData.get(position).getNamaLaundry();
+
+                    String proses = "Masuk Antrian";
+
+                    if (status.equals("Sedang Di Jemput")
+                            ||status.equals("Menunggu Dijemput")){
+
+                        Transaksi transaksi = new Transaksi(namaPelapak,photoGuest,longitudeLaundry,
+                        latitudeLaundry,longitudeGuest,latitudeGuest, namaGuest,idGuest,idLaundry,
+                        setrika,antarJemput,deskripsi,paketLayanan,transkey,photoPelapak,
+                        alamatPelapak,namaLaundry,getCurrentTimeStamp(),proses);
+
+                        FirebaseDatabase firebaseDatabase;
+                        firebaseDatabase = FirebaseDatabase.getInstance();
+                        DatabaseReference transRef, requestRef;
+
+                        transRef = firebaseDatabase.getReference("Transaksi");
+                        requestRef = firebaseDatabase.getReference("RequestOrder");
+
+                        transRef.child(transkey).setValue(transaksi).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+
+                                showMessage("Transaksi Diterima");
+                            }
+                        });
+
+                        requestRef.child(transkey).removeValue();
+
+                    } else if (status.equals("Di Tolak")
+                            || status.equals("Menunggu Konfirmasi")){
+
+                        Intent cancelOrder = new Intent(mContext, ReOrderActivity.class);
+
+                        cancelOrder.putExtra("orderKey", mData.get(position).getOrderKey());
+                        cancelOrder.putExtra("idLaundry", mData.get(position).getIdLaundry());
+                        cancelOrder.putExtra("layanan", mData.get(position).getPaketLayanan());
+                        cancelOrder.putExtra("deskripsi", mData.get(position).getDeskripsi());
+                        cancelOrder.putExtra("setrika", mData.get(position).getSetrika());
+                        cancelOrder.putExtra("antarJemput", mData.get(position).getAntarJemput());
+                        cancelOrder.putExtra("namaLaundry", mData.get(position).getNamaLaundry());
+                        cancelOrder.putExtra("namaPemilik", mData.get(position).getNamaPelapak());
+                        cancelOrder.putExtra("photoPemilik", mData.get(position).getPhotoPelapak());
+
+                        mContext.startActivity(cancelOrder);
+                    }
 
                 }
             });
 
         }
+    }
+
+    private void showMessage(String s) {
+
+        Toast.makeText(mContext, s, Toast.LENGTH_SHORT).show();
+    }
+
+    private String getCurrentTimeStamp() {
+        Long timeStamp = System.currentTimeMillis()/1000;
+        return timeStamp.toString();
     }
 }

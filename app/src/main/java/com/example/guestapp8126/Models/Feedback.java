@@ -10,11 +10,12 @@ public class Feedback {
     String idGuest;
     String photoGuest;
     String namaGuest;
-    Object timeStamp;
+    String timeStamp;
     String feebackKey;
 
     public Feedback(String idLaundry, String layanan, Float rate, String komentar,
-                    String transkey, String idGuest, String photoGuest, String namaGuest) {
+                    String transkey, String idGuest, String photoGuest, String namaGuest,
+                    String timeStamp) {
 
         this.idLaundry = idLaundry;
         this.layanan = layanan;
@@ -24,6 +25,7 @@ public class Feedback {
         this.idGuest = idGuest;
         this.photoGuest = photoGuest;
         this.namaGuest = namaGuest;
+        this.timeStamp = timeStamp;
     }
 
     public Feedback() {
@@ -93,11 +95,11 @@ public class Feedback {
         this.namaGuest = namaGuest;
     }
 
-    public Object getTimeStamp() {
+    public String getTimeStamp() {
         return timeStamp;
     }
 
-    public void setTimeStamp(Object timeStamp) {
+    public void setTimeStamp(String timeStamp) {
         this.timeStamp = timeStamp;
     }
 

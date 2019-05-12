@@ -24,7 +24,7 @@ public class RequestOrder {
     String status;
 
     String orderKey;
-    Object timeStamp;
+    String timeStamp;
 
     public RequestOrder() {
 
@@ -35,7 +35,7 @@ public class RequestOrder {
                         String namaLaundry, String photoPelapak, String namaPelapak, String alamatPelapak,
                         String latitudeLaundry, String longitudeLaundry,
                         String paketLayanan, String setrika, String antarJemput,
-                        String deskripsi, String status) {
+                        String deskripsi, String status, String timeStamp) {
 
         this.idGuest = idGuest;
         this.namaGuest = namaGuest;
@@ -54,6 +54,7 @@ public class RequestOrder {
         this.antarJemput = antarJemput;
         this.deskripsi = deskripsi;
         this.status = status;
+        this.timeStamp = timeStamp;
     }
 
     public String getNamaLaundry() {
@@ -200,11 +201,11 @@ public class RequestOrder {
         this.orderKey = orderKey;
     }
 
-    public Object getTimeStamp() {
+    public String getTimeStamp() {
         return timeStamp;
     }
 
-    public void setTimeStamp(Object timeStamp) {
+    public void setTimeStamp(String timeStamp) {
         this.timeStamp = timeStamp;
     }
 }

@@ -155,7 +155,7 @@ public class RequestOrderActivity extends AppCompatActivity {
                                     RequestOrder requestOrder = new RequestOrder(guestId,namaGuest,photoGuest,
                                             latitudeGuest,longitudeGuest,idLaundry,namaLaundry,photoPelapak,namaPelapak
                                             ,alamatPelapak,latitudeLaundry,longitudeLaundry,layanan,bv_setrika,
-                                            bv_antar_jemput,edt_deskripsi.getText().toString(),status);
+                                            bv_antar_jemput,edt_deskripsi.getText().toString(),status, getCurrentTimeStamp());
 
                                     saveToDatabase(requestOrder);
                                 }
@@ -182,7 +182,11 @@ public class RequestOrderActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
+    }
 
+    private String getCurrentTimeStamp() {
+        Long timeStamp = System.currentTimeMillis()/1000;
+        return timeStamp.toString();
     }
 
     private void saveToDatabase(RequestOrder requestOrder) {

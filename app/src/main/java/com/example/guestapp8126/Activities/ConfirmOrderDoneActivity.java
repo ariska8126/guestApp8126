@@ -97,6 +97,9 @@ public class ConfirmOrderDoneActivity extends AppCompatActivity {
         tv_berat.setText(berat);tv_biaya.setText(biaya);
         tv_proses.setText(proses);
 
+//        if (!proses.equals("Selesai")){
+//
+//        }
 
         //on click
         btn_chat.setOnClickListener(new View.OnClickListener() {

@@ -1,6 +1,7 @@
 package com.example.guestapp8126.Activities;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,12 +14,16 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.guestapp8126.Models.Feedback;
+import com.example.guestapp8126.Models.OwnerLaundry;
 import com.example.guestapp8126.R;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class PostFeedbackActivity extends AppCompatActivity {
 
@@ -35,8 +40,9 @@ public class PostFeedbackActivity extends AppCompatActivity {
     DatabaseReference deleteTransReff;
 
     String idLaundry, guestId, layanan, transKey, namaGuest, namaLaundry, alamatLaundry,
-            photoLaundry, photoGuest;
+            photoLaundry, photoGuest, rateServer;
 
+    Float newRateServer;
     Float rateValue;
 
     @Override
@@ -57,6 +63,7 @@ public class PostFeedbackActivity extends AppCompatActivity {
 
         user = FirebaseAuth.getInstance().getCurrentUser();
 
+        rb_rate.setRating(3);
 
         rb_rate.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
@@ -88,17 +95,42 @@ public class PostFeedbackActivity extends AppCompatActivity {
         btn_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (rb_rate != null && !edt_komentar.getText().toString().isEmpty()){
+                if (rateValue != null && !edt_komentar.getText().toString().isEmpty()){
 
                     Feedback feedback = new Feedback(idLaundry, layanan,rateValue,
                             edt_komentar.getText().toString(), transKey, guestId,
-                            photoGuest, namaGuest);
+                            photoGuest, namaGuest, getCurrentTimeStamp());
                     postFeedBack(feedback);
+
+                    laundrReff = FirebaseDatabase.getInstance().getReference("OwnerLaundry").child(idLaundry);
+                    laundrReff.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                            rateServer = dataSnapshot.child("rate").getValue().toString();
+
+                            Float f = Float.parseFloat(rateServer);
+
+                            newRateServer = (f+rateValue)/2;
+                            laundrReff.child("rate").setValue(newRateServer);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+
                     deleteTrans(transKey);
                 }
             }
         });
 
+    }
+
+    private String getCurrentTimeStamp() {
+        Long timeStamp = System.currentTimeMillis()/1000;
+        return timeStamp.toString();
     }
 
     private void deleteTrans(String orderKey) {
