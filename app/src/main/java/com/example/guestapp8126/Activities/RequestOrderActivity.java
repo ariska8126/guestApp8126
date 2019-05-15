@@ -57,7 +57,6 @@ public class RequestOrderActivity extends AppCompatActivity {
         btn_order = findViewById(R.id.btn_order_ro);
         sw_antar_jemput = findViewById(R.id.sw_anjem_ro);
         sw_setrika = findViewById(R.id.sw_setrika_ro);
-//        sp_pewangi = findViewById(R.id.spinner_pewangi_ro);
         edt_deskripsi = findViewById(R.id.edt_desc_ro);
 
         //getIntent
@@ -99,12 +98,10 @@ public class RequestOrderActivity extends AppCompatActivity {
                 if (b == true){
 
                     bv_antar_jemput = "Ya";
-
                     Toast.makeText(RequestOrderActivity.this, "Meminta Antar Jemput!", Toast.LENGTH_SHORT).show();
 
                 } else {
                     bv_antar_jemput = "Tidak";
-
                     Toast.makeText(RequestOrderActivity.this, "Tidak Perlu Antar Jemput!", Toast.LENGTH_SHORT).show();
 
                 }
@@ -144,6 +141,14 @@ public class RequestOrderActivity extends AppCompatActivity {
                         tv_namaPelapak.setText(namaPelapak);
                         Glide.with(RequestOrderActivity.this).load(photoPelapak).into(imgv_photoPelapak);
 
+                        if (bv_antar_jemput == null){
+                            bv_antar_jemput = "Tidak";
+                        }
+
+                        if (bv_setrika == null){
+                            bv_setrika = "Tidak";
+                        }
+
                         btn_order.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
@@ -158,10 +163,12 @@ public class RequestOrderActivity extends AppCompatActivity {
                                             bv_antar_jemput,edt_deskripsi.getText().toString(),status, getCurrentTimeStamp());
 
                                     saveToDatabase(requestOrder);
+                                } else {
+
+                                    Toast.makeText(RequestOrderActivity.this, "Isi semua kolom", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
-
                     }
 
                     @Override

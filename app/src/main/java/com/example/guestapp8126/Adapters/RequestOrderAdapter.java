@@ -109,16 +109,18 @@ public class RequestOrderAdapter extends RecyclerView.Adapter<RequestOrderAdapte
                     final String photoPelapak = mData.get(position).getPhotoPelapak();
                     final String alamatPelapak = mData.get(position).getAlamatPelapak();
                     final String namaLaundry = mData.get(position).getNamaLaundry();
-
+                    final String berat = mData.get(position).getBerat();
+                    final String biaya = mData.get(position).getBiaya();
+                    final String note = mData.get(position).getNote();
+                    final String bayaran = mData.get(position).getStatusBayar();
                     String proses = "Masuk Antrian";
 
-                    if (status.equals("Sedang Di Jemput")
-                            ||status.equals("Menunggu Dijemput")){
+                    if (status.equals("Konfirmasi")){
 
                         Transaksi transaksi = new Transaksi(namaPelapak,photoGuest,longitudeLaundry,
                         latitudeLaundry,longitudeGuest,latitudeGuest, namaGuest,idGuest,idLaundry,
                         setrika,antarJemput,deskripsi,paketLayanan,transkey,photoPelapak,
-                        alamatPelapak,namaLaundry,getCurrentTimeStamp(),proses);
+                        alamatPelapak,namaLaundry,getCurrentTimeStamp(),proses, berat, biaya, note, bayaran);
 
                         FirebaseDatabase firebaseDatabase;
                         firebaseDatabase = FirebaseDatabase.getInstance();
@@ -131,7 +133,7 @@ public class RequestOrderAdapter extends RecyclerView.Adapter<RequestOrderAdapte
                             @Override
                             public void onSuccess(Void aVoid) {
 
-                                showMessage("Transaksi Diterima");
+                                showMessage("Laundry Diproses");
                             }
                         });
 

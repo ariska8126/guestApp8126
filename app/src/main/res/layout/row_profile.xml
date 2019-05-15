@@ -32,35 +32,31 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.5" />
+        app:layout_constraintGuide_percent="0.2" />
 
     <TextView
         android:id="@+id/tv_alamat_prof"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:drawablePadding="@dimen/default_padding"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
         android:drawableStart="@drawable/ic_add_location_black_24dp"
         android:text="alamat"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline7"
         app:layout_constraintTop_toBottomOf="@+id/tv_mail_prof" />
 
     <TextView
-        android:drawableStart="@drawable/ic_person_black_24dp"
-        android:drawablePadding="@dimen/default_padding"
         android:id="@+id/tv_nama_prof"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:background="@drawable/bg_text"
+        android:layout_marginTop="16dp"
+        android:drawableStart="@drawable/ic_person_black_24dp"
+        android:drawablePadding="@dimen/default_padding"
         android:text="nama"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline7"
         app:layout_constraintTop_toBottomOf="@+id/tv_uid_prof" />
 
     <TextView
@@ -70,38 +66,33 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:background="@drawable/bg_text"
         android:text="uID"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgv_user_photo_prof" />
 
     <TextView
-        android:drawableStart="@drawable/ic_email_black_24dp"
-        android:drawablePadding="@dimen/default_padding"
         android:id="@+id/tv_mail_prof"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:background="@drawable/bg_text"
+        android:drawableStart="@drawable/ic_email_black_24dp"
+        android:drawablePadding="@dimen/default_padding"
         android:text="mail"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline7"
         app:layout_constraintTop_toBottomOf="@+id/tv_nama_prof" />
 
     <TextView
         android:id="@+id/tv_phone_prof"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:background="@drawable/bg_text"
         android:drawableStart="@drawable/ic_local_phone_black_24dp"
         android:drawablePadding="@dimen/default_padding"
         android:text="phone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline7"
         app:layout_constraintTop_toBottomOf="@+id/tv_alamat_prof" />
 
 </android.support.constraint.ConstraintLayout>

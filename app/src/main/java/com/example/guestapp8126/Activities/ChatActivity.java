@@ -34,17 +34,12 @@ public class ChatActivity extends AppCompatActivity {
 
     ImageView imgv_photoUser;
     TextView tv_userName;
-
     FirebaseUser user;
     DatabaseReference chatReference, newUserChatRef;
-
     String userId, photoLaundry;
-
     ChatAdapter chatAdapter;
     List<Chat> mData;
-
     RecyclerView rv_chat;
-
     ImageButton btn_send;
     EditText edt_pesan;
 
@@ -70,10 +65,8 @@ public class ChatActivity extends AppCompatActivity {
 
         user = FirebaseAuth.getInstance().getCurrentUser();
 
-        //get intent
         userId = getIntent().getExtras().getString("idLaundry");
         photoLaundry = getIntent().getExtras().getString("photoLaundry");
-
 
         btn_send.setOnClickListener(new View.OnClickListener() {
             @Override

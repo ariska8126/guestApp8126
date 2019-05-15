@@ -76,6 +76,7 @@ public class ReOrderActivity extends AppCompatActivity {
                 DatabaseReference reference = FirebaseDatabase.getInstance()
                         .getReference("RequestOrder").child(orderKey);
                 reference.child("status").setValue("Menunggu Konfirmasi");
+                updateUI();
             }
         });
 

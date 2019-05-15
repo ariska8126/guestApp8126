@@ -126,7 +126,9 @@
                     <Switch
                         android:id="@+id/sw_setrika_ro"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:textOff="Tidak"
+                        android:textOn="Ya" />
 
                 </TableRow>
 
@@ -145,7 +147,9 @@
                     <Switch
                         android:id="@+id/sw_anjem_ro"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:textOff="Tidak"
+                        android:textOn="Ya" />
 
                 </TableRow>
 

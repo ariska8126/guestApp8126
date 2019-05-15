@@ -26,6 +26,11 @@ public class RequestOrder {
     String orderKey;
     String timeStamp;
 
+    String berat;
+    String statusBayar;
+    String note;
+    String biaya;
+
     public RequestOrder() {
 
     }
@@ -55,6 +60,38 @@ public class RequestOrder {
         this.deskripsi = deskripsi;
         this.status = status;
         this.timeStamp = timeStamp;
+    }
+
+    public String getBerat() {
+        return berat;
+    }
+
+    public void setBerat(String berat) {
+        this.berat = berat;
+    }
+
+    public String getStatusBayar() {
+        return statusBayar;
+    }
+
+    public void setStatusBayar(String statusBayar) {
+        this.statusBayar = statusBayar;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public String getBiaya() {
+        return biaya;
+    }
+
+    public void setBiaya(String biaya) {
+        this.biaya = biaya;
     }
 
     public String getNamaLaundry() {
